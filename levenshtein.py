@@ -1,4 +1,4 @@
-def levenshtein(s1: str, s2: str) -> list:
+def levenshtein(s1: str, s2: str) -> int:
     m = len(s1)
     n = len(s2)
 

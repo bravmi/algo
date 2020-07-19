@@ -1,4 +1,4 @@
-def dfs(graph: dict, source) -> dict:
+def dfs(graph: dict, source) -> set:
     """Depth First Search"""
 
     explored = set()

@@ -1,3 +1,6 @@
+from typing import Optional
+
+
 class Node:
     def __init__(self, value=None, next_=None):
         self.value = value
@@ -35,7 +38,7 @@ class List:
             yield node
             node = node.next
 
-    def get_tail(self) -> Node:
+    def get_tail(self) -> Optional[Node]:
         if not self:
             return None
 
@@ -44,7 +47,7 @@ class List:
             node = node.next
         return node
 
-    def find(self, value) -> Node:
+    def find(self, value) -> Node:  # type: ignore
         node = self.head
         while node:
             if node.value == value:
@@ -173,7 +176,7 @@ class List:
     def __repr__(self):
         return '[{}]'.format(', '.join(repr(x) for x in self))
 
-    def to_array(self):
+    def to_array(self) -> list:
         return [x for x in self]
 
     def apply(self, func):
