@@ -79,7 +79,7 @@ class Matrix:
             [row[:j] + row[j + 1 :] for row in (self[:i] + self[i + 1 :])]
         )
 
-    def det(self):
+    def det(self) -> float:
         A = self
         n, m = self.shape
         if n != m:
@@ -142,7 +142,7 @@ class Matrix:
         A = self._matrix
         return len(A), len(A[0]) if A else 0
 
-    def allclose(self, other, atol=1e-8):
+    def allclose(self, other, atol=1e-8) -> bool:
         if self.shape != other.shape:
             return False
 
