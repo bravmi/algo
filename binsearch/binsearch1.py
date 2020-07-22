@@ -3,7 +3,7 @@ Regular binary search
 """
 
 
-def binsearch(x, a):
+def binsearch(x, a: list):
     low, high = 0, len(a) - 1
 
     while low <= high:
