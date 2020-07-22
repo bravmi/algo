@@ -14,11 +14,11 @@ class Array:
         if iterable:
             self.extend(iterable)
 
-    def extend(self, iterable):
+    def extend(self, iterable) -> None:
         for v in iterable:
             self.append(v)
 
-    def append(self, value):
+    def append(self, value) -> int:
         if self._nval >= self._max:
             array = [None] * (NGROW * self._max)
             array[: self._nval] = self._array
@@ -29,29 +29,29 @@ class Array:
         self._nval += 1
         return self._nval
 
-    def remove(self, value):
+    def remove(self, value) -> None:
         i = self.index(value)
         self._array[i : self._nval - 1] = self._array[i + 1 : self._nval]
         self._nval -= 1
 
-    def index(self, value):
+    def index(self, value) -> int:
         for i in range(self._nval):
             if self._array[i] == value:
                 return i
         raise ValueError
 
-    def clear(self):
+    def clear(self) -> None:
         self._nval = 0
 
-    def tolist(self):
+    def tolist(self) -> list:
         return [v for v in self]
 
-    def __getitem__(self, index):
+    def __getitem__(self, index: int):
         if isinstance(index, int) and not 0 <= index < self._nval:
             raise IndexError
         return self._array[index]
 
-    def __setitem__(self, index, value):
+    def __setitem__(self, index: int, value) -> None:
         if isinstance(index, slice):
             raise TypeError('set index must be an int')
         if not 0 <= index < self._nval:
@@ -65,7 +65,7 @@ class Array:
         for i in range(self._nval):
             yield self._array[i]
 
-    def __contains__(self, value):
+    def __contains__(self, value) -> bool:
         for x in self:
             if x == value:
                 return True
