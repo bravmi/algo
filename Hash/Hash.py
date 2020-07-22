@@ -1,7 +1,7 @@
 import itertools as it
+from typing import Optional
 
-from algo.utils import nextprime
-from algo.utils import random_string
+from algo.utils import nextprime, random_string
 
 NHASH = 1009
 MULTIPLER = 31
@@ -12,22 +12,24 @@ NLIMIT = 1
 class Hash:
     def __init__(
         self, iterable=None, nhash=NHASH, multipler=MULTIPLER, nlimit=NLIMIT
-    ):
+    ) -> None:
         self._nhash = nhash
         self._multiplier = multipler
         self._nlimit = nlimit
-        self._symtab = [[] for _ in range(self._nhash)]
+        self._symtab: list = [[] for _ in range(self._nhash)]
         self._running_average = 0  # list length average
 
         if iterable:
             self.extend(iterable)
 
-    def extend(self, iterable):
+    def extend(self, iterable) -> None:
         for k, v in iterable:
             self[k] = v
 
     @classmethod
-    def fromkeys(cls, iterable, value=None, nhash=NHASH, multipler=MULTIPLER):
+    def fromkeys(
+        cls, iterable, value=None, nhash=NHASH, multipler=MULTIPLER
+    ) -> 'Hash':
         items = ((k, value) for k in iterable)
         return cls(iterable=items, nhash=nhash, multipler=multipler)
 
@@ -38,7 +40,7 @@ class Hash:
                 return v
         raise KeyError
 
-    def __setitem__(self, key, value):
+    def __setitem__(self, key, value) -> None:
         h = self._hash(key)
         row = self._symtab[h]
         for index, (k, _) in enumerate(row):
@@ -58,12 +60,12 @@ class Hash:
                 return v
         return default
 
-    def _grow(self):
+    def _grow(self) -> None:
         items = list(self.items())
         nhash = nextprime(self._nhash * NGROW)
-        self.__init__(items, nhash=nhash)
+        self.__init__(items, nhash=nhash)  # type: ignore
 
-    def __contains__(self, key):
+    def __contains__(self, key) -> bool:
         h = self._hash(key)
         return any(k == key for k, _ in self._symtab[h])
 
@@ -76,39 +78,40 @@ class Hash:
             for k, v in row:
                 yield k, v
 
-    def _hash(self, key):
+    def _hash(self, key) -> int:
         s = str(key)
         h = 0
         for c in s:
             h = self._multiplier * h + ord(c)
         return h % self._nhash
 
-    def find_collision(self, key):
+    def find_collision(self, key) -> Optional[str]:
         """just a way to find a collision"""
+        s = str(key)
         for i in it.count(0):
-            key2 = key + chr(i)
-            if self._hash(key) == self._hash(key2):
-                return key2
+            s2 = s + chr(i)
+            if self._hash(s) == self._hash(s2):
+                return s2
         return None
 
-    def collisions(self):
-        d = {h: row for h, row in enumerate(self._symtab) if len(row) > 1}
-        return d
+    def collisions(self) -> dict:
+        return {h: row for h, row in enumerate(self._symtab) if len(row) > 1}
 
-    def average_length(self):
-        avg = sum(len(row) for _, row in enumerate(self._symtab)) / self._nhash
-        return avg
+    def average_length(self) -> int:
+        return (
+            sum(len(row) for _, row in enumerate(self._symtab)) / self._nhash
+        )
 
-    def to_dict(self):
+    def to_dict(self) -> dict:
         return {h: row for h, row in enumerate(self._symtab) if row}
 
-    def __len__(self):
+    def __len__(self) -> int:
         return sum(1 for _ in self)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return repr(self)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return repr(self.to_dict())
 
 

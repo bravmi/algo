@@ -1,8 +1,10 @@
 import itertools as it
+
 import pytest
 
-from .Hash import Hash
 from algo.utils import random_string
+
+from .Hash import Hash
 
 
 def test_basic():
@@ -65,6 +67,12 @@ def test_grow():
     h[random_string(6)] = True
     assert h._running_average < running_average
     assert h._nhash > nhash
+
+
+def test_str_int():
+    h = Hash([(5, 1), ('5', 2)])
+    assert len(h.to_dict()) == 1
+    assert len(h) == 2
 
 
 if __name__ == '__main__':
