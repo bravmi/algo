@@ -1,5 +1,6 @@
 import collections as co
 import random
+from typing import Optional, Deque
 
 
 class Node:
@@ -19,7 +20,7 @@ class BinarySearchTree:
     def insert(self, value) -> None:
         self.root = self._insert(self.root, value)
 
-    def _insert(self, curr, value):
+    def _insert(self, curr, value) -> Node:
         if curr is None:
             return Node(value)
 
@@ -29,10 +30,10 @@ class BinarySearchTree:
             curr.right = self._insert(curr.right, value)
         return curr
 
-    def lookup(self, value):
+    def lookup(self, value) -> Optional[Node]:
         return self._lookup(self.root, value)
 
-    def _lookup(self, curr, value):
+    def _lookup(self, curr, value) -> Optional[Node]:
         if curr is None:
             return None
 
@@ -44,12 +45,12 @@ class BinarySearchTree:
             return self._lookup(curr.right, value)
         return None
 
-    def preorder(self):
-        acc = []
+    def preorder(self) -> list:
+        acc: list = []
         self._preorder(self.root, acc)
         return acc
 
-    def _preorder(self, curr, acc):
+    def _preorder(self, curr, acc: list) -> None:
         if curr is None:
             return
 
@@ -59,12 +60,12 @@ class BinarySearchTree:
         if curr.right:
             self._preorder(curr.right, acc)
 
-    def postorder(self):
-        acc = []
+    def postorder(self) -> list:
+        acc: list = []
         self._postorder(self.root, acc)
         return acc
 
-    def _postorder(self, curr, acc):
+    def _postorder(self, curr, acc: list) -> None:
         if curr is None:
             return
 
@@ -74,12 +75,12 @@ class BinarySearchTree:
             self._postorder(curr.right, acc)
         acc.append(curr.value)
 
-    def inorder(self):
-        acc = []
+    def inorder(self) -> list:
+        acc: list = []
         self._inorder(self.root, acc)
         return acc
 
-    def _inorder(self, curr, acc):
+    def _inorder(self, curr, acc: list) -> None:
         if curr is None:
             return
 
@@ -89,12 +90,12 @@ class BinarySearchTree:
         if curr.right:
             self._inorder(curr.right, acc)
 
-    def level_order(self):
+    def level_order(self) -> list:
         if self.root is None:
             return []
 
         acc = []
-        queue = co.deque([self.root])
+        queue: Deque = co.deque([self.root])
         while queue:
             node = queue.pop()
             if node is None:
@@ -104,16 +105,16 @@ class BinarySearchTree:
             queue.appendleft(node.right)
         return acc
 
-    def validate(self):
+    def validate(self) -> bool:
         values = self.inorder()
         return all(x < y for x, y in zip(values, values[1:]))
 
-    def extend(self, values):
+    def extend(self, values) -> None:
         for x in values:
             self.insert(x)
 
 
-def sort(values):
+def sort(values) -> list:
     tree = BinarySearchTree()
     tree.extend(values)
     return tree.inorder()
