@@ -277,7 +277,7 @@ def test_det4():
     assert A.det() == 1560
 
 
-def test_setitem():
+def test_setitem_int():
     A = [
         [1, 2],
         [3, 4],
@@ -286,6 +286,40 @@ def test_setitem():
 
     A[1] = [5, 6]
     assert A[1] == [5, 6]
+
+
+def test_setitem_slice():
+    A = [
+        [1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 9],
+    ]
+    A = Matrix(A)
+    B = [
+        [0, 0, 0],
+        [0, 0, 0],
+        [7, 8, 9],
+    ]
+    B = Matrix(B)
+
+    A[0:2] = [[0, 0, 0], [0, 0, 0]]
+    assert A == B
+
+
+def test_getitem_slice():
+    A = [
+        [1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 9],
+    ]
+    A = Matrix(A)
+    B = [
+        [1, 2, 3],
+        [4, 5, 6],
+    ]
+    B = Matrix(B)
+
+    assert Matrix(A[0:2]) == B
 
 
 def test_insert():
