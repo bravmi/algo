@@ -14,7 +14,7 @@ def dijkstra(graph: dict, source) -> dict:
     Based on Tim Roughgarden's lectures
     """
 
-    dist = {}  # type: ignore
+    dist: dict = {}
     queue = [(0, source)]
     while queue:
         score, v = heappop(queue)
