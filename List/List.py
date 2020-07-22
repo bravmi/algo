@@ -6,7 +6,7 @@ class Node:
         self.value = value
         self.next = next_
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f'{self.value}'
 
 
@@ -14,10 +14,10 @@ class List:
     def __init__(self, head=None):
         self.head = head
 
-    def prepend(self, value):
+    def prepend(self, value) -> None:
         self.head = Node(value, self.head)
 
-    def append(self, value):
+    def append(self, value) -> None:
         if not self:
             self.head = Node(value)
             return
@@ -27,7 +27,7 @@ class List:
             node = node.next
         node.next = Node(value)
 
-    def extend(self, iterable):
+    def extend(self, iterable) -> None:
         for x in iterable:
             self.prepend(x)
         self.reverse()
@@ -56,10 +56,10 @@ class List:
         if node is None:
             raise ValueError
 
-    def __contains__(self, value):
+    def __contains__(self, value) -> bool:
         return any(x == value for x in self)
 
-    def remove(self, value):
+    def remove(self, value) -> None:
         prev = None
         curr = self.head
         while curr:
@@ -73,7 +73,7 @@ class List:
             curr = curr.next
         raise ValueError
 
-    def reversed(self):
+    def reversed(self) -> 'List':
         new_list = List()
         for value in self:
             new_list.prepend(value)
@@ -95,17 +95,17 @@ class List:
             prev, curr = curr, next_
         self.head = prev
 
-    def copy(self):
+    def copy(self) -> 'List':
         new_list = List()
         for x in self:
             new_list.prepend(x)
         new_list.reverse()
         return new_list
 
-    def merge(self, other):
+    def merge(self, other) -> 'List':
         return self + other
 
-    def __add__(self, other):
+    def __add__(self, other) -> 'List':
         new_list = List()
         for x in self:
             new_list.prepend(x)
@@ -114,7 +114,7 @@ class List:
         new_list.reverse()
         return new_list
 
-    def __iadd__(self, other):
+    def __iadd__(self, other) -> 'List':
         if not self:
             self.head = other.head
             return self
@@ -125,7 +125,7 @@ class List:
         node.next = other.head
         return self
 
-    def __getitem__(self, index):
+    def __getitem__(self, index: int):
         n = len(self)
         if index < 0:
             index += n
@@ -137,7 +137,7 @@ class List:
             node = node.next
         return node.value
 
-    def __setitem__(self, index, value):
+    def __setitem__(self, index: int, value):
         n = len(self)
         if index < 0:
             index += n
@@ -149,7 +149,7 @@ class List:
             node = node.next
         node.value = value
 
-    def clear(self):
+    def clear(self) -> None:
         prev = None
         curr = self.head
         self.head = None
@@ -158,10 +158,10 @@ class List:
             curr = curr.next
             prev.next = None
 
-    def __bool__(self):
+    def __bool__(self) -> bool:
         return self.head is not None
 
-    def __len__(self):
+    def __len__(self) -> int:
         return sum(1 for x in self)
 
     def __iter__(self):
@@ -170,16 +170,16 @@ class List:
             yield node.value
             node = node.next
 
-    def __str__(self):
+    def __str__(self) -> str:
         return repr(self)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return '[{}]'.format(', '.join(repr(x) for x in self))
 
     def to_array(self) -> list:
         return [x for x in self]
 
-    def apply(self, func):
+    def apply(self, func) -> None:
         for x in self:
             func(x)
 
