@@ -1,11 +1,10 @@
 """
 Proper recursive in-place version
 """
-
 import random
 
 
-def partition(a, start, stop):
+def partition(a: list, start: int, stop: int) -> int:
     """Returns eventual index of a pivot"""
 
     n = stop - start
@@ -21,7 +20,7 @@ def partition(a, start, stop):
     return last
 
 
-def _quicksort(a, start, stop):
+def _quicksort(a: list, start: int, stop: int) -> None:
     n = stop - start
     if n <= 1:
         return
@@ -31,7 +30,7 @@ def _quicksort(a, start, stop):
     _quicksort(a, p + 1, stop)
 
 
-def quicksort(a):
+def quicksort(a: list) -> list:
     _quicksort(a, 0, len(a))
     return a
 

@@ -1,11 +1,10 @@
 """
-Iterative non-recursive version
+Iterative in-place version
 """
-
 import random
 
 
-def partition(a, start, stop):
+def partition(a: list, start: int, stop: int) -> int:
     """Returns eventual index of a pivot"""
 
     n = stop - start
@@ -21,7 +20,7 @@ def partition(a, start, stop):
     return last
 
 
-def quicksort(a):
+def quicksort(a: list) -> list:
     stack = []
     stack.append((0, len(a)))
 

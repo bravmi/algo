@@ -1,11 +1,10 @@
 """
 Recursive and not in-place but very readable version
 """
-
 import random
 
 
-def quicksort(a):
+def quicksort(a: list) -> list:
     if len(a) <= 1:
         return a
 
