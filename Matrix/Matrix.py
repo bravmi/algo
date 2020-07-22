@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, Union
 
 
 class Matrix:
@@ -9,17 +9,17 @@ class Matrix:
         if self:
             assert len(set(len(row) for row in self)) == 1
 
-    def __str__(self):
+    def __str__(self) -> str:
         lines = []
         lines.append('[')
         lines.extend(f'    {str(row)},' for row in self)
         lines.append(']')
         return '\n'.join(lines)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return repr(self._matrix)
 
-    def inverse(self, method='cramer'):
+    def inverse(self, method='cramer') -> 'Matrix':
         n, m = self.shape
         if n != m:
             raise ValueError('cannot invert non-square matrix')
@@ -29,7 +29,7 @@ class Matrix:
         else:
             raise ValueError('unknown inverse method')
 
-    def cramer(self):
+    def cramer(self) -> 'Matrix':
         A = self
         n = len(A)
 
@@ -63,10 +63,10 @@ class Matrix:
                 B[i][j] /= det
         return B
 
-    def copy(self):
+    def copy(self) -> 'Matrix':
         return Matrix(self._matrix)
 
-    def transpose(self, inplace=False):
+    def transpose(self, inplace=False) -> 'Matrix':
         A = self if inplace else self.copy()
         n = len(A)
         for i in range(n):
@@ -74,7 +74,7 @@ class Matrix:
                 A[i][j], A[j][i] = A[j][i], A[i][j]
         return A
 
-    def minor(self, i, j):
+    def minor(self, i: int, j: int) -> 'Matrix':
         return Matrix(
             [row[:j] + row[j + 1 :] for row in (self[:i] + self[i + 1 :])]
         )
@@ -101,28 +101,30 @@ class Matrix:
                 det += (-1) ** j * A[0][j] * M.det()
         return det
 
-    def __len__(self):
+    def __len__(self) -> int:
         return len(self._matrix)
 
-    def __getitem__(self, index):
+    def __getitem__(self, index: Union[int, slice]) -> list:
+        if isinstance(index, slice):
+            return [row[:] for row in self._matrix[index]]
         return self._matrix[index]
 
-    def __setitem__(self, index, value):
+    def __setitem__(self, index: Union[int, slice], value) -> None:
         self._matrix[index] = value
 
-    def append(self, row):
+    def append(self, row: list) -> None:
         self._matrix.append(row)
         if self:
             assert len(set(len(row) for row in self)) == 1
 
-    def insert(self, index, row):
+    def insert(self, index, row) -> None:
         self._matrix.insert(index, row)
 
     def __iter__(self):
         for row in self._matrix:
             yield row
 
-    def __mul__(self, other):
+    def __mul__(self, other) -> 'Matrix':
         A, B = self, other
         n = A.shape[0]
         m = B.shape[1]
@@ -134,11 +136,11 @@ class Matrix:
                 C[i][j] = sum(x * y for x, y in zip(a, b))
         return C
 
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         return self._matrix == other._matrix
 
     @property
-    def shape(self):
+    def shape(self) -> tuple:
         A = self._matrix
         return len(A), len(A[0]) if A else 0
 
@@ -152,7 +154,7 @@ class Matrix:
             abs(A[i][j] - B[i][j]) <= atol for i in range(n) for j in range(m)
         )
 
-    def __add__(self, other):
+    def __add__(self, other) -> 'Matrix':
         A, B = self, other
         n, m = A.shape
         C = Matrix([[None] * m for _ in range(n)])
@@ -162,16 +164,16 @@ class Matrix:
                 C[i][j] = A[i][j] + B[i][j]
         return C
 
-    def __iadd__(self, other):
+    def __iadd__(self, other) -> 'Matrix':
         A, B = self, other
         n, m = A.shape
 
         for i in range(n):
             for j in range(m):
                 A[i][j] += B[i][j]
-        return self
+        return A
 
-    def __sub__(self, other):
+    def __sub__(self, other) -> 'Matrix':
         A, B = self, other
         n, m = A.shape
         C = Matrix([[None] * m for _ in range(n)])
@@ -181,26 +183,26 @@ class Matrix:
                 C[i][j] = A[i][j] - B[i][j]
         return C
 
-    def __isub__(self, other):
+    def __isub__(self, other) -> 'Matrix':
         A, B = self, other
         n, m = A.shape
 
         for i in range(n):
             for j in range(m):
                 A[i][j] -= B[i][j]
-        return self
+        return A
 
-    def tolist(self):
+    def tolist(self) -> list:
         return [row[:] for row in self]
 
 
-def zeros(n: int, m: Optional[int] = None):
+def zeros(n: int, m: Optional[int] = None) -> 'Matrix':
     m = m or n
     mat = [[0 for j in range(m)] for i in range(n)]
     return Matrix(mat)
 
 
-def eye(n: int):
+def eye(n: int) -> 'Matrix':
     mat = zeros(n)
     for i in range(n):
         mat[i][i] = 1
