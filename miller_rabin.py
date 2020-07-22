@@ -2,7 +2,7 @@ import random
 import pytest
 
 
-def square_check(x, m):
+def square_check(x: int, m: int) -> int:
     """Miller-Rabin"""
     r = (x * x) % m
     if r == 1 and x not in [1, m - 1]:
@@ -11,7 +11,7 @@ def square_check(x, m):
         return r
 
 
-def expmod(base, exp, m):
+def expmod(base: int, exp: int, m: int) -> int:
     if exp == 0:
         return 1
     elif exp % 2 == 0:
@@ -21,16 +21,16 @@ def expmod(base, exp, m):
         return (base * expmod(base, exp - 1, m)) % m
 
 
-def fermat_test(n):
+def fermat_test(n: int) -> bool:
     a = random.randrange(1, n)
     return expmod(a, n - 1, n) == 1
 
 
-def fast_prime(n, times):
+def fast_prime(n: int, times: int) -> bool:
     return all(fermat_test(n) for _ in range(times))
 
 
-def prime(n):
+def prime(n: int) -> bool:
     if n == 1:
         return False
     elif n == 2:

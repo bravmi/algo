@@ -1,7 +1,7 @@
 import random
 
 
-def selectionsort(a):
+def selectionsort(a: list) -> list:
     """O(n^2) time, O(1) space"""
     n = len(a)
     for i in range(n):

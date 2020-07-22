@@ -1,7 +1,7 @@
 import random
 
 
-def merge(left, right):
+def merge(left: list, right: list):
     res = []
     i, j = 0, 0
     while i < len(left) and j < len(right):
@@ -16,7 +16,7 @@ def merge(left, right):
     return res
 
 
-def mergesort(a):
+def mergesort(a: list) -> list:
     if len(a) <= 1:
         return a
 

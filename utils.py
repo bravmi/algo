@@ -5,7 +5,7 @@ import string
 from .miller_rabin import prime as isprime
 
 
-def nextprime(n):
+def nextprime(n: int) -> int:
     """
     >>> nextprime(0)
     2
@@ -15,7 +15,7 @@ def nextprime(n):
     return next(x for x in it.count(n + 1) if isprime(x))
 
 
-def random_string(n, upper=False):
+def random_string(n: int, upper=False) -> str:
     items = string.ascii_lowercase + string.digits
     if upper:
         items += string.ascii_uppercase

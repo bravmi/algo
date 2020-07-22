@@ -3,7 +3,7 @@ import string
 DIGITS = string.digits + string.ascii_letters
 
 
-def int2base(x, base):
+def int2base(x: int, base: int) -> str:
     if x < 0:
         sign = -1
     elif x == 0:

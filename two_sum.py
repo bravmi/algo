@@ -1,6 +1,8 @@
-def two_sum(nums, target):
-    """O(n)"""
-    hist = {}
+def two_sum(nums: list, target: int) -> list:
+    """
+    O(n)
+    """
+    hist: dict = {}
 
     for i, x in enumerate(nums):
         if target - x in hist:
