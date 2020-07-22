@@ -1,7 +1,7 @@
 import random
 
 
-def bubblesort(a):
+def bubblesort(a: list) -> list:
     sorted = False
     while not sorted:
         sorted = True
