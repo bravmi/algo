@@ -1,5 +1,5 @@
 import itertools as it
-from typing import Optional
+from typing import Optional, Any
 
 from algo.utils import nextprime, random_string
 
@@ -85,13 +85,12 @@ class Hash:
             h = self._multiplier * h + ord(c)
         return h % self._nhash
 
-    def find_collision(self, key) -> Optional[str]:
+    def find_collision(self, key: Any) -> Optional[str]:
         """just a way to find a collision"""
-        s = str(key)
         for i in it.count(0):
-            s2 = s + chr(i)
-            if self._hash(s) == self._hash(s2):
-                return s2
+            key2: str = str(key) + chr(i)
+            if self._hash(key2) == self._hash(key):
+                return key2
         return None
 
     def collisions(self) -> dict:
