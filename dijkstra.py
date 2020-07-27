@@ -8,10 +8,12 @@ def dijkstra(graph: dict, source) -> dict:
 
     O(m log(m)) time, O(m) space
     log(m) here since it's a heap of edges for simplicity
-    (would need to delete-insert a vertex)
+    (would need to delete-insert a vertex for a heap of vertices)
     given weak connection assumption
 
     Based on Tim Roughgarden's lectures
+
+    :returns: distances from the source to the graph's vertices
     """
 
     dist: dict = {}

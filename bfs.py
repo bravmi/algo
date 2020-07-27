@@ -4,7 +4,10 @@ INF = float('inf')
 
 
 def bfs(graph: dict, source) -> dict:
-    """Breadth First Search"""
+    """Breadth First Search
+
+    :returns: distances from the source to the graph's vertices
+    """
 
     dist = {source: 0}
     queue = co.deque([source])
