@@ -4,12 +4,14 @@ def dfs(graph: dict, source) -> set:
     explored = set()
 
     def _dfs(s):
+        if s in explored:
+            return
         explored.add(s)
+
         if s not in graph:  # dead end
             return
         for v in graph[s]:
-            if v not in explored:
-                _dfs(v)
+            _dfs(v)
 
     _dfs(source)
 
