@@ -18,7 +18,7 @@ class Array:
         for v in iterable:
             self.append(v)
 
-    def append(self, value) -> int:
+    def append(self, value) -> None:
         if self._nval >= self._max:
             array = [None] * (NGROW * self._max)
             array[: self._nval] = self._array
@@ -27,7 +27,6 @@ class Array:
 
         self._array[self._nval] = value
         self._nval += 1
-        return self._nval
 
     def remove(self, value) -> None:
         i = self.index(value)
@@ -58,7 +57,7 @@ class Array:
             raise IndexError
         self._array[index] = value
 
-    def __len__(self):
+    def __len__(self) -> int:
         return self._nval
 
     def __iter__(self):
@@ -71,10 +70,10 @@ class Array:
                 return True
         return False
 
-    def __str__(self):
+    def __str__(self) -> str:
         return '[{}]'.format(', '.join(str(x) for x in self))
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return str(self)
 
 
