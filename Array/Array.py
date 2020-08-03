@@ -65,13 +65,13 @@ class Array:
         n = self._nval
         k = k % n
         if left:
+            self._reverse(0, k)
+            self._reverse(k, n)
             self._reverse(0, n)
-            self._reverse(0, n - k)
-            self._reverse(n - k, n)
         else:
-            self._reverse(0, n - k)
-            self._reverse(n - k, n)
             self._reverse(0, n)
+            self._reverse(0, k)
+            self._reverse(k, n)
 
     def __getitem__(self, index: int):
         if isinstance(index, int) and not 0 <= index < self._nval:
