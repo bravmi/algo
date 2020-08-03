@@ -2,7 +2,9 @@ import random
 
 
 def selectionsort(a: list) -> list:
-    """O(n^2) time, O(1) space"""
+    """
+    O(n^2) time, O(1) space
+    """
     n = len(a)
     for i in range(n):
         _, smallest = min((a[j], j) for j in range(i, n))
