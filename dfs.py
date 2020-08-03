@@ -1,7 +1,7 @@
 def dfs(graph: dict, source) -> set:
     """Depth First Search"""
 
-    explored = set()
+    explored: set = set()
 
     def _dfs(s):
         if s in explored:
