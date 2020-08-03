@@ -45,6 +45,34 @@ class Array:
     def tolist(self) -> list:
         return [v for v in self]
 
+    def reverse(self) -> None:
+        self._reverse(0, self._nval)
+
+    def _reverse(self, start: int, stop: int) -> None:
+        a = self._array
+        i = start
+        j = stop - 1
+        while i < j:
+            a[i], a[j] = a[j], a[i]
+            i += 1
+            j -= 1
+
+    def rotate(self, k: int, left=False) -> None:
+        """
+        in-place
+        :param k: rotation offset
+        """
+        n = self._nval
+        k = k % n
+        if left:
+            self._reverse(0, n)
+            self._reverse(0, n - k)
+            self._reverse(n - k, n)
+        else:
+            self._reverse(0, n - k)
+            self._reverse(n - k, n)
+            self._reverse(0, n)
+
     def __getitem__(self, index: int):
         if isinstance(index, int) and not 0 <= index < self._nval:
             raise IndexError
@@ -110,6 +138,20 @@ def test_dunders():
     assert a[0:2] == [1, 2]
     with pytest.raises(TypeError):
         a[2:4] = [3, 4]
+
+
+def test_reverse():
+    a = Array([1, 2, 3, 4, 5])
+    a.reverse()
+    assert a.tolist() == [5, 4, 3, 2, 1]
+
+
+def test_rotate():
+    a = Array([1, 2, 3, 4, 5])
+    a.rotate(2)
+    assert a.tolist() == [4, 5, 1, 2, 3]
+    a.rotate(2, left=True)
+    assert a.tolist() == [1, 2, 3, 4, 5]
 
 
 if __name__ == '__main__':
