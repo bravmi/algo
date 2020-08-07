@@ -1,6 +1,5 @@
 import collections as co
-
-INF = float('inf')
+import math
 
 
 def bfs(graph: dict, source) -> dict:
@@ -19,7 +18,7 @@ def bfs(graph: dict, source) -> dict:
             if w not in dist:
                 dist[w] = dist[v] + 1
                 queue.append(w)
-    dist.update({v: INF for v in graph if v not in dist})
+    dist.update({v: math.inf for v in graph if v not in dist})
 
     return dist
 

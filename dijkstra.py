@@ -1,6 +1,5 @@
+import math
 from heapq import heappop, heappush
-
-INF = float('inf')
 
 
 def dijkstra(graph: dict, source) -> dict:
@@ -28,7 +27,7 @@ def dijkstra(graph: dict, source) -> dict:
         for w in graph[v]:
             if w not in dist:
                 heappush(queue, (dist[v] + graph[v][w], w))
-    dist.update({v: INF for v in graph if v not in dist})
+    dist.update({v: math.inf for v in graph if v not in dist})
 
     return dist
 
