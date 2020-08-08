@@ -33,7 +33,7 @@ def dijkstra(graph: dict, source) -> dict:
     return dist
 
 
-def test4():
+def test_tim():
     graph = {
         's': {'v': 1, 'w': 4},
         'v': {'w': 2, 't': 6},
@@ -42,6 +42,18 @@ def test4():
     }
     dist = dijkstra(graph, 's')
     assert dist['t'] == 6
+
+
+def test_dasgupta():
+    graph = {
+        'a': {'b': 4, 'c': 2},
+        'b': {'c': 3, 'd': 2, 'e': 3},
+        'c': {'b': 1, 'd': 4, 'e': 5},
+        'd': {},
+        'e': {'d': 1},
+    }
+    dist = dijkstra(graph, 'a')
+    assert dist == {'a': 0, 'b': 3, 'c': 2, 'd': 5, 'e': 6}
 
 
 if __name__ == '__main__':
