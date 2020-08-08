@@ -1,4 +1,4 @@
-def kadane(a: list):
+def kadane(a: list) -> float:
     """Kadane's algo for maximum sum subarray problem
 
     O(n) time, O(1) space

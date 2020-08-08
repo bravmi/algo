@@ -14,8 +14,8 @@ def dijkstra(graph: dict, source) -> dict:
 
     :returns: distances from the source to the graph's vertices
     """
-
     dist: dict = {}
+
     queue = [(0, source)]
     while queue:
         score, v = heappop(queue)
@@ -24,22 +24,23 @@ def dijkstra(graph: dict, source) -> dict:
         dist[v] = score
         if v not in graph:  # dead end
             continue
+
         for w in graph[v]:
-            if w not in dist:
+            if w not in dist:  # optimization
                 heappush(queue, (dist[v] + graph[v][w], w))
     dist.update({v: math.inf for v in graph if v not in dist})
 
     return dist
 
 
-def test():
+def test4():
     graph = {
         's': {'v': 1, 'w': 4},
         'v': {'w': 2, 't': 6},
         'w': {'t': 3},
     }
     dist = dijkstra(graph, 's')
-    assert dist.get('t') == 6
+    assert dist['t'] == 6
 
 
 if __name__ == '__main__':
@@ -50,4 +51,4 @@ if __name__ == '__main__':
     }
     dist = dijkstra(graph, 's')
     print(f'dist = {dist}')
-    assert dist.get('t') == 6
+    assert dist['t'] == 6
