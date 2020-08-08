@@ -1,24 +1,22 @@
 def dfs(graph: dict, source) -> set:
     """Depth First Search"""
-
     explored: set = set()
 
-    def _dfs(s):
-        if s in explored:
+    def _dfs(v) -> None:
+        if v in explored:
             return
-        explored.add(s)
+        explored.add(v)
 
-        if s not in graph:  # dead end
+        if v not in graph:  # dead end
             return
-        for v in graph[s]:
-            _dfs(v)
+        for w in graph[v]:
+            _dfs(w)
 
     _dfs(source)
-
     return explored
 
 
-def tests():
+def test6():
     graph = {
         's': ['a', 'b'],
         'a': ['s', 'c'],

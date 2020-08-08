@@ -8,7 +8,6 @@ def dijkstra(graph: dict, source) -> dict:
     O(m log(m)) time, O(m) space
     log(m) here since it's a heap of edges for simplicity
     (would need to delete-insert a vertex for a heap of vertices)
-    given weak connection assumption
 
     Based on Tim Roughgarden's lectures
 
@@ -28,8 +27,9 @@ def dijkstra(graph: dict, source) -> dict:
         for w in graph[v]:
             if w not in dist:  # optimization
                 heappush(queue, (dist[v] + graph[v][w], w))
-    dist.update({v: math.inf for v in graph if v not in dist})
 
+    vertices = set(graph.keys()) | {w for v in graph for w in graph[v]}
+    dist.update({v: math.inf for v in vertices if v not in dist})
     return dist
 
 
@@ -38,6 +38,7 @@ def test4():
         's': {'v': 1, 'w': 4},
         'v': {'w': 2, 't': 6},
         'w': {'t': 3},
+        't': {},
     }
     dist = dijkstra(graph, 's')
     assert dist['t'] == 6

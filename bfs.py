@@ -7,23 +7,25 @@ def bfs(graph: dict, source) -> dict:
 
     :returns: distances from the source to the graph's vertices
     """
+    dist: dict = {source: 0}
 
-    dist = {source: 0}
     queue = co.deque([source])
     while queue:
         v = queue.popleft()
         if v not in graph:  # dead end
             continue
+
         for w in graph[v]:
             if w not in dist:
                 dist[w] = dist[v] + 1
                 queue.append(w)
-    dist.update({v: math.inf for v in graph if v not in dist})
 
+    vertices = set(graph.keys()) | {w for v in graph for w in graph[v]}
+    dist.update({v: math.inf for v in vertices if v not in dist})
     return dist
 
 
-def test():
+def test6():
     graph = {
         's': ['a', 'b'],
         'a': ['s', 'c'],
@@ -33,7 +35,7 @@ def test():
         'e': ['c', 'd'],
     }
     dist = bfs(graph, 's')
-    assert dist.get('e') == 3
+    assert dist['e'] == 3
 
 
 def test_directed():
@@ -43,7 +45,7 @@ def test_directed():
         'w': {'t': 3},
     }
     dist = bfs(graph, 's')
-    assert dist.get('t') == 2
+    assert dist['t'] == 2
 
 
 if __name__ == '__main__':
@@ -57,4 +59,4 @@ if __name__ == '__main__':
     }
     dist = bfs(graph, 's')
     print(f'dist = {dist}')
-    assert dist.get('e') == 3
+    assert dist['e'] == 3
