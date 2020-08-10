@@ -25,7 +25,7 @@ def bfs(graph: dict, source) -> dict:
     return dist
 
 
-def test6():
+def test_tim():
     graph = {
         's': ['a', 'b'],
         'a': ['s', 'c'],
@@ -38,7 +38,7 @@ def test6():
     assert dist['e'] == 3
 
 
-def test_directed():
+def test_tim_directed():
     graph = {
         's': {'v': 1, 'w': 4},
         'v': {'w': 2, 't': 6},

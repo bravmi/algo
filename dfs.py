@@ -16,7 +16,7 @@ def dfs(graph: dict, source) -> set:
     return explored
 
 
-def test6():
+def test_tim():
     graph = {
         's': ['a', 'b'],
         'a': ['s', 'c'],
