@@ -40,9 +40,9 @@ def test_tim():
 
 def test_tim_directed():
     graph = {
-        's': {'v': 1, 'w': 4},
-        'v': {'w': 2, 't': 6},
-        'w': {'t': 3},
+        's': ['v', 'w'],
+        'v': ['w', 't'],
+        'w': ['t'],
     }
     dist = bfs(graph, 's')
     assert dist['t'] == 2
