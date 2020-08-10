@@ -48,6 +48,18 @@ def test_tim_directed():
     assert dist['t'] == 2
 
 
+def test_dasgupta():
+    graph = {
+        'a': ['b', 'c'],
+        'b': ['c', 'd', 'e'],
+        'c': ['b', 'd', 'e'],
+        'd': [],
+        'e': ['d'],
+    }
+    dist = bfs(graph, 'a')
+    assert dist == {'a': 0, 'b': 1, 'c': 1, 'd': 2, 'e': 2}
+
+
 if __name__ == '__main__':
     graph = {
         's': ['a', 'b'],
