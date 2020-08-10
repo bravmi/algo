@@ -1,4 +1,7 @@
 def levenshtein(s1: str, s2: str) -> int:
+    """
+    O(n m) time, O(n m) space (with a sliding row space would be O(m))
+    """
     m = len(s1)
     n = len(s2)
 
