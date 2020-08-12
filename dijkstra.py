@@ -11,7 +11,7 @@ def dijkstra(graph: dict, source) -> dict:
 
     Based on Tim Roughgarden's lectures
 
-    :returns: distances from the source to the graph's vertices
+    :returns: distances from the source to all the graph's vertices
     """
     dist: dict = {}
 

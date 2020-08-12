@@ -9,7 +9,7 @@ def floyd_warshall(graph: dict) -> Optional[dict]:
 
     Based on Tim Roughgarden's lectures
 
-    :returns: shortest distances from each vertex to all graph's vertices
+    :returns: shortest distances from each vertex to all the graph's vertices
     or None for negative cycle
     """
     vertices = set(graph.keys()) | {w for v in graph for w in graph[v]}

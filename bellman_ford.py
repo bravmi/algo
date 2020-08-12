@@ -9,7 +9,7 @@ def bellman_ford(graph: dict, source) -> Optional[dict]:
 
     Based on Tim Roughgarden's lectures
 
-    :returns: shortest distances from the source to all graph's vertices
+    :returns: shortest distances from the source to all the graph's vertices
     or None for negative cycle
     """
     n = len(graph)
