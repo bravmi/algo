@@ -7,7 +7,7 @@ def bfs(graph: dict, source) -> dict:
 
     :returns: distances from the source to the graph's vertices
     """
-    dist: dict = {source: 0}
+    dist = {source: 0}
 
     queue = co.deque([source])
     while queue:
@@ -35,7 +35,7 @@ def test_tim():
         'e': ['c', 'd'],
     }
     dist = bfs(graph, 's')
-    assert dist['e'] == 3
+    assert dist == {'s': 0, 'a': 1, 'b': 1, 'c': 2, 'd': 2, 'e': 3}
 
 
 def test_tim_directed():
@@ -45,7 +45,7 @@ def test_tim_directed():
         'w': ['t'],
     }
     dist = bfs(graph, 's')
-    assert dist['t'] == 2
+    assert dist == {'s': 0, 'v': 1, 'w': 1, 't': 2}
 
 
 def test_dasgupta():
@@ -61,6 +61,8 @@ def test_dasgupta():
 
 
 if __name__ == '__main__':
+    from pprint import pprint as pp
+
     graph = {
         's': ['a', 'b'],
         'a': ['s', 'c'],
@@ -70,5 +72,6 @@ if __name__ == '__main__':
         'e': ['c', 'd'],
     }
     dist = bfs(graph, 's')
-    print(f'dist = {dist}')
+    print('dist:')
+    pp(dist)
     assert dist['e'] == 3

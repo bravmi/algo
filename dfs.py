@@ -49,6 +49,8 @@ def test_dasgupta():
 
 
 if __name__ == '__main__':
+    from pprint import pprint as pp
+
     graph = {
         's': ['a', 'b'],
         'a': ['s', 'c'],
@@ -58,5 +60,6 @@ if __name__ == '__main__':
         'e': ['c', 'd'],
     }
     explored = dfs(graph, 's')
-    print(f'explored = {explored}')
+    print('explored:')
+    pp(explored)
     assert explored == {'s', 'a', 'b', 'c', 'd', 'e'}

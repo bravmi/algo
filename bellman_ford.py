@@ -9,13 +9,13 @@ def bellman_ford(graph: dict, source) -> Optional[dict]:
 
     Based on Tim Roughgarden's lectures
 
-    :returns: distances from the source to the graph's vertices or None for
-    negative cycle
+    :returns: shortest distances from the source to all graph's vertices
+    or None for negative cycle
     """
     n = len(graph)
     vertices = set(graph.keys()) | {w for v in graph for w in graph[v]}
     # A[i] is dist from the source with a budget of i edges
-    A: list = [{v: math.inf for v in vertices} for _ in range(n + 1)]
+    A = [{v: math.inf for v in vertices} for _ in range(n + 1)]
     A[0][source] = 0
 
     for i in range(1, n + 1):
@@ -26,8 +26,7 @@ def bellman_ford(graph: dict, source) -> Optional[dict]:
     if A[n] != A[n - 1]:
         return None
 
-    dist = A[n - 1]
-    return dist
+    return A[n - 1]
 
 
 def test_tim():
@@ -39,7 +38,7 @@ def test_tim():
         't': {},
     }
     dist = bellman_ford(graph, 's')
-    assert dist['t'] == 6
+    assert dist == {'s': 0, 'v': 2, 'w': 4, 'x': 3, 't': 6}
 
 
 def test_tim_negative_cycle():
@@ -71,6 +70,8 @@ def test_dasgupta():
 
 
 if __name__ == '__main__':
+    from pprint import pprint as pp
+
     graph = {
         's': {'v': 2, 'x': 4},
         'v': {'w': 2, 'x': 1},
@@ -79,5 +80,7 @@ if __name__ == '__main__':
         't': {},
     }
     dist = bellman_ford(graph, 's')
+    print('dist:')
+    pp(dist)
     assert dist is not None
     assert dist['t'] == 6

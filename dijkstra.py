@@ -7,7 +7,7 @@ def dijkstra(graph: dict, source) -> dict:
 
     O(m log(m)) time, O(m) space
     log(m) here since it's a heap of edges for simplicity
-    (would need to delete-insert a vertex for a heap of vertices)
+    (for log(n) would need to delete-insert a vertex for a heap of vertices)
 
     Based on Tim Roughgarden's lectures
 
@@ -41,7 +41,7 @@ def test_tim():
         't': {},
     }
     dist = dijkstra(graph, 's')
-    assert dist['t'] == 6
+    assert dist == {'s': 0, 'v': 1, 'w': 3, 't': 6}
 
 
 def test_dasgupta():
@@ -57,11 +57,14 @@ def test_dasgupta():
 
 
 if __name__ == '__main__':
+    from pprint import pprint as pp
+
     graph = {
         's': {'v': 1, 'w': 4},
         'v': {'w': 2, 't': 6},
         'w': {'t': 3},
     }
     dist = dijkstra(graph, 's')
-    print(f'dist = {dist}')
+    print('dist:')
+    pp(dist)
     assert dist['t'] == 6
