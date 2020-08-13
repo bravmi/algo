@@ -6,8 +6,9 @@ def dijkstra(graph: dict, source) -> dict:
     """Dijkstra's shortest path algorithm
 
     O(m log(m)) time, O(m) space
-    log(m) here since it's a heap of edges for simplicity
-    (for log(n) would need to delete-insert a vertex for a heap of vertices)
+    log(m) here since it's a heap of edges' heads (as opposed to vertices)
+    for simplicity
+    For log(n) would need a custom heap of vertices with delete-insert
 
     Based on Tim Roughgarden's lectures
 
