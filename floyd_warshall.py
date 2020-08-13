@@ -12,21 +12,27 @@ def floyd_warshall(graph: dict) -> Optional[dict]:
     :returns: shortest distances from each vertex to all the graph's vertices
     or None for negative cycle
     """
-    vertices = set(graph.keys()) | {w for v in graph for w in graph[v]}
+    vertices = get_vertices(graph)
     # A[i][j] on the kth iteration is the shortest distance between i and j
     # using only nodes up to k
-    A = {i: {j: graph[i].get(j, math.inf) for j in vertices} for i in vertices}
+    A = {i: {j: math.inf for j in vertices} for i in vertices}
     for i in graph:
+        A[i].update(graph[i])
+    for i in vertices:
         A[i][i] = 0
 
-    for k in graph:
-        for i in graph:
-            for j in graph:
+    for k in vertices:
+        for i in vertices:
+            for j in vertices:
                 A[i][j] = min(A[i][k] + A[k][j], A[i][j])
     if any(A[i][i] < 0 for i in graph):
         return None
 
     return A
+
+
+def get_vertices(graph: dict) -> set:
+    return set(graph.keys()) | {j for i in graph for j in graph[i]}
 
 
 def test_tim():
@@ -40,7 +46,21 @@ def test_tim():
         't': {},
     }
     dist = floyd_warshall(graph)
-    want = {v: bellman_ford(graph, v) for v in graph}
+    want = {v: bellman_ford(graph, v) for v in get_vertices(graph)}
+    assert dist == want
+
+
+def test_tim_sloppy_graph():
+    from bellman_ford import bellman_ford
+
+    graph = {
+        's': {'v': 2, 'x': 4},
+        'v': {'w': 2, 'x': 1},
+        'w': {'t': 2},
+        'x': {'t': 4},
+    }
+    dist = floyd_warshall(graph)
+    want = {v: bellman_ford(graph, v) for v in get_vertices(graph)}
     assert dist == want
 
 
@@ -70,7 +90,7 @@ def test_dasgupta():
         'g': {'f': 1},
     }
     dist = floyd_warshall(graph)
-    want = {v: bellman_ford(graph, v) for v in graph}
+    want = {v: bellman_ford(graph, v) for v in get_vertices(graph)}
     assert dist == want
 
 
@@ -83,10 +103,9 @@ if __name__ == '__main__':
         'v': {'w': 2, 'x': 1},
         'w': {'t': 2},
         'x': {'t': 4},
-        't': {},
     }
     dist = floyd_warshall(graph)
     print('dist:')
     pp(dist)
-    want = {v: bellman_ford(graph, v) for v in graph}
+    want = {v: bellman_ford(graph, v) for v in get_vertices(graph)}
     assert dist == want
