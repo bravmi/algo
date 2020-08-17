@@ -1,4 +1,5 @@
 import math
+from pprint import pprint as pp
 from typing import Optional
 
 
@@ -24,6 +25,7 @@ def floyd_warshall(graph: dict) -> Optional[dict]:
     for k in vertices:
         for i in vertices:
             for j in vertices:
+                # in-place is okay because reusing k would mean a (neg) cycle
                 A[i][j] = min(A[i][k] + A[k][j], A[i][j])
     if any(A[i][i] < 0 for i in graph):
         return None
@@ -96,7 +98,6 @@ def test_dasgupta():
 
 if __name__ == '__main__':
     from bellman_ford import bellman_ford
-    from pprint import pprint as pp
 
     graph = {
         's': {'v': 2, 'x': 4},
