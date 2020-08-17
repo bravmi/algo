@@ -1,6 +1,6 @@
 import collections as co
 import random
-from typing import Optional, Deque
+from typing import Deque, Optional
 
 
 class Node:

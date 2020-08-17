@@ -1,5 +1,5 @@
 import itertools as it
-from typing import Optional, Any
+from typing import Any, Optional
 
 from algo.utils import nextprime, random_string
 
