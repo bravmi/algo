@@ -5,3 +5,5 @@ prof/
 
 .coverage
 htmlcov/
+
+.ipynb_checkpoints/
