@@ -1,5 +1,6 @@
 import math
 from heapq import heappop, heappush
+from pprint import pprint as pp
 
 
 def dijkstra(graph: dict, source) -> dict:
@@ -7,7 +8,7 @@ def dijkstra(graph: dict, source) -> dict:
 
     O(m log(m)) time, O(m) space
     log(m) here since it's a heap of edges' heads (as opposed to vertices)
-    for simplicity
+    for simplicity, which is fine because the best one will win anyway.
     For log(n) would need a custom heap of vertices with delete-insert
 
     Based on Tim Roughgarden's lectures
@@ -58,8 +59,6 @@ def test_dasgupta():
 
 
 if __name__ == '__main__':
-    from pprint import pprint as pp
-
     graph = {
         's': {'v': 1, 'w': 4},
         'v': {'w': 2, 't': 6},

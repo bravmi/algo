@@ -1,9 +1,12 @@
 import collections as co
 import math
+from pprint import pprint as pp
 
 
 def bfs(graph: dict, source) -> dict:
     """Breadth First Search
+
+    O(m) time, O(n) space
 
     :returns: distances from the source to all the graph's vertices
     """
@@ -61,8 +64,6 @@ def test_dasgupta():
 
 
 if __name__ == '__main__':
-    from pprint import pprint as pp
-
     graph = {
         's': ['a', 'b'],
         'a': ['s', 'c'],

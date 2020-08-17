@@ -1,5 +1,11 @@
+from pprint import pprint as pp
+
+
 def dfs(graph: dict, source) -> set:
-    """Depth First Search"""
+    """Depth First Search
+
+    O(m) time, O(n) space
+    """
     explored: set = set()
 
     def _dfs(v) -> None:
@@ -49,8 +55,6 @@ def test_dasgupta():
 
 
 if __name__ == '__main__':
-    from pprint import pprint as pp
-
     graph = {
         's': ['a', 'b'],
         'a': ['s', 'c'],
