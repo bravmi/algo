@@ -9,7 +9,7 @@ from dijkstra import dijkstra
 def johnson(graph: dict) -> Optional[dict]:
     """Johnson's algorithm
 
-    O(n m log(m)) time, O(n^2) space?
+    O(n m log(m)) time, O(n^2) space
 
     Based on Tim Roughgarden's lectures
 
