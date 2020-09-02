@@ -2,8 +2,8 @@ import copy
 from pprint import pprint as pp
 from typing import Optional
 
-from bellman_ford import bellman_ford
-from dijkstra import dijkstra
+from .bellman_ford import bellman_ford
+from .dijkstra import dijkstra
 
 
 def johnson(graph: dict) -> Optional[dict]:
@@ -38,7 +38,7 @@ def johnson(graph: dict) -> Optional[dict]:
 
 
 def test_tim():
-    from floyd_warshall import floyd_warshall
+    from .floyd_warshall import floyd_warshall
 
     graph = {
         's': {'v': 2, 'x': 4},
@@ -53,7 +53,7 @@ def test_tim():
 
 
 def test_tim_sloppy_graph():
-    from floyd_warshall import floyd_warshall
+    from .floyd_warshall import floyd_warshall
 
     graph = {
         's': {'v': 2, 'x': 4},
@@ -79,7 +79,7 @@ def test_tim_negative_cycle():
 
 
 def test_dasgupta():
-    from floyd_warshall import floyd_warshall
+    from .floyd_warshall import floyd_warshall
 
     graph = {
         's': {'a': 10, 'g': 8},
@@ -97,7 +97,7 @@ def test_dasgupta():
 
 
 if __name__ == '__main__':
-    from floyd_warshall import floyd_warshall
+    from .floyd_warshall import floyd_warshall
 
     graph = {
         's': {'v': 2, 'x': 4},

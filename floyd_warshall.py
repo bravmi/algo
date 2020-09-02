@@ -38,7 +38,7 @@ def get_vertices(graph: dict) -> set:
 
 
 def test_tim():
-    from bellman_ford import bellman_ford
+    from .bellman_ford import bellman_ford
 
     graph = {
         's': {'v': 2, 'x': 4},
@@ -53,7 +53,7 @@ def test_tim():
 
 
 def test_tim_sloppy_graph():
-    from bellman_ford import bellman_ford
+    from .bellman_ford import bellman_ford
 
     graph = {
         's': {'v': 2, 'x': 4},
@@ -79,7 +79,7 @@ def test_tim_negative_cycle():
 
 
 def test_dasgupta():
-    from bellman_ford import bellman_ford
+    from .bellman_ford import bellman_ford
 
     graph = {
         's': {'a': 10, 'g': 8},
@@ -97,7 +97,7 @@ def test_dasgupta():
 
 
 if __name__ == '__main__':
-    from bellman_ford import bellman_ford
+    from .bellman_ford import bellman_ford
 
     graph = {
         's': {'v': 2, 'x': 4},
