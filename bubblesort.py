@@ -2,13 +2,13 @@ import random
 
 
 def bubblesort(a: list) -> list:
-    sorted = False
-    while not sorted:
-        sorted = True
+    is_sorted = False
+    while not is_sorted:
+        is_sorted = True
         for i in range(0, len(a) - 1):
             if a[i] > a[i + 1]:
                 a[i], a[i + 1] = a[i + 1], a[i]
-                sorted = False
+                is_sorted = False
     return a
 
 
