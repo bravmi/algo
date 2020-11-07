@@ -80,7 +80,7 @@ class List:
         return new_list
 
     def reverse(self) -> None:
-        return self.reverse_iter()
+        self.reverse_iter()
 
     def reverse_iter(self) -> None:
         if not self.head or not self.head.next:
