@@ -2,8 +2,7 @@ import itertools as it
 
 import pytest
 
-from algo.utils import random_string
-
+from ..utils import random_string
 from .Hash import Hash
 
 

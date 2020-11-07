@@ -1,7 +1,7 @@
 import itertools as it
 from typing import Any, Optional
 
-from algo.utils import nextprime, random_string
+from ..utils import nextprime, random_string
 
 NHASH = 1009
 MULTIPLER = 31
