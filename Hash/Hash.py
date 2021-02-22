@@ -1,3 +1,7 @@
+"""
+Based on section 2.9 of Practice of Prorgramming book
+"""
+
 import itertools as it
 from typing import Any, Optional
 
