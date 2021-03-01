@@ -18,8 +18,7 @@ def johnson(graph: dict) -> Optional[dict]:
     """
     vertices = set(graph.keys()) | {w for v in graph for w in graph[v]}
     graph_prime = copy.deepcopy(graph)
-    assert None not in graph
-    s = None
+    s = object()  # poor man's singleton
     graph_prime[s] = {v: 0 for v in vertices}
 
     weight = bellman_ford(graph_prime, s)
