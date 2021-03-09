@@ -25,30 +25,30 @@ def fermat_test(n: int) -> bool:
     return expmod(a, n - 1, n) == 1
 
 
-def fast_prime(n: int, times: int) -> bool:
+def fast_isprime(n: int, times: int) -> bool:
     return all(fermat_test(n) for _ in range(times))
 
 
-def prime(n: int) -> bool:
+def isprime(n: int) -> bool:
     if n == 1:
         return False
     if n == 2:
         return True
     if n % 2 == 0:
         return False
-    return fast_prime(n, 10)
+    return fast_isprime(n, 10)
 
 
 @pytest.mark.slow
 def test():
     import sympy as sp
 
-    it = (n for n in range(2, 10000) if prime(n) != sp.isprime(n))
+    it = (n for n in range(2, 10000) if isprime(n) != sp.isprime(n))
     assert next(it, None) is None
 
 
 if __name__ == '__main__':
     import sympy as sp
 
-    it = (n for n in range(2, 10000) if prime(n) != sp.isprime(n))
+    it = (n for n in range(2, 10000) if isprime(n) != sp.isprime(n))
     print(next(it, None))

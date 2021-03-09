@@ -2,7 +2,7 @@ import itertools as it
 import random
 import string
 
-from .miller_rabin import prime as isprime
+from .miller_rabin import isprime
 
 
 def nextprime(n: int) -> int:
