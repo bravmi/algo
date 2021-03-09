@@ -8,18 +8,16 @@ def square_check(x: int, m: int) -> int:
     r = (x * x) % m
     if r == 1 and x not in [1, m - 1]:
         return 0
-    else:
-        return r
+    return r
 
 
 def expmod(base: int, exp: int, m: int) -> int:
     if exp == 0:
         return 1
-    elif exp % 2 == 0:
+    if exp % 2 == 0:
         x = expmod(base, exp // 2, m)
         return square_check(x, m)
-    else:
-        return (base * expmod(base, exp - 1, m)) % m
+    return (base * expmod(base, exp - 1, m)) % m
 
 
 def fermat_test(n: int) -> bool:
@@ -34,9 +32,9 @@ def fast_prime(n: int, times: int) -> bool:
 def prime(n: int) -> bool:
     if n == 1:
         return False
-    elif n == 2:
+    if n == 2:
         return True
-    elif n % 2 == 0:
+    if n % 2 == 0:
         return False
     return fast_prime(n, 10)
 
