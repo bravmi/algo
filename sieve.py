@@ -22,10 +22,10 @@ def sieve_gen():
             # q not a key in D, so q is prime, therefore, yield it
             yield q
         else:
-            # let x <- smallest (N*p)+q which wasn't yet known to be composite
+            # let x <- smallest q+(n*p) which wasn't yet known to be composite
             # we just learned x is composite, with p first-found prime factor,
             # since p is the first-found prime factor of q -- find and mark it
-            x = p + q
+            x = q + p
             while x in D or not (x & 1):
                 x += p
             D[x] = p
