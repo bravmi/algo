@@ -2,12 +2,16 @@
 From here:
 https://stackoverflow.com/questions/2068372/fastest-way-to-list-all-primes-below-n
 """
-
 import itertools as it
 
 
-def sieve(n: int):
-    pass
+def sieve(n: int) -> list:
+    """Returns  a list of primes < n"""
+    sieve = [True] * n
+    for i in range(3, int(n ** 0.5) + 1, 2):
+        if sieve[i]:
+            sieve[i * i :: 2 * i] = [False] * ((n - i * i - 1) // (2 * i) + 1)
+    return [2] + [i for i in range(3, n, 2) if sieve[i]]
 
 
 def sieve_gen():
@@ -31,9 +35,20 @@ def sieve_gen():
             D[x] = p
 
 
+def test_sieve_gen():
+    n = 10
+    first_n = list(it.islice(sieve_gen(), 0, n))
+    assert first_n == [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
+
+
+def test_sieve():
+    assert sieve(30) == [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
+
+
 def tests():
-    first_10 = list(it.islice(sieve_gen(), 0, 10))
-    assert first_10 == [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
+    n = 100
+    first_n = list(it.islice(sieve_gen(), 0, n))
+    assert sieve(first_n[-1] + 1) == first_n
 
 
 if __name__ == '__main__':
