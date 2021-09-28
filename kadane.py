@@ -1,10 +1,10 @@
-def kadane(a: list[float]) -> float:
+def kadane(arr: list[float]) -> float:
     """Kadane's algo for maximum sum subarray problem
 
     O(n) time, O(1) space
     """
     best = curr = 0
-    for x in a:
+    for x in arr:
         curr = max(curr + x, x)
         best = max(best, curr)
     return best
