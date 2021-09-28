@@ -7,7 +7,7 @@ def levenshtein(s1: str, s2: str) -> int:
 
     # D[i][j] holds the distance between the first i characters of s1 and the
     # first j characters of s2
-    D = [[0] * (n + 1) for _ in range(m + 1)]
+    D: list[list[int]] = [[0] * (n + 1) for _ in range(m + 1)]
     for i in range(m + 1):
         D[i][0] = i
     for j in range(n + 1):
