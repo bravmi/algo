@@ -2,7 +2,7 @@ import collections as co
 
 
 def factors(n: int) -> dict[int, int]:
-    res: dict = co.defaultdict(lambda: 0)
+    res: dict[int, int] = co.defaultdict(lambda: 0)
     i = 2
     while i * i <= n:
         if n % i == 0:
@@ -12,7 +12,7 @@ def factors(n: int) -> dict[int, int]:
             i += 1
     if n != 1:
         res[n] += 1
-    return dict(res)
+    return res
 
 
 def tests():
