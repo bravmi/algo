@@ -1,9 +1,13 @@
+from __future__ import annotations
+
 import math
 from pprint import pprint as pp
 from typing import Optional
 
 
-def floyd_warshall(graph: dict) -> Optional[dict]:
+def floyd_warshall(
+    graph: dict[str, dict[str, float]]
+) -> dict[str, dict[str, float]] | None:
     """Floyd-Warshall algorithm
 
     O(n^3) time, O(n^2) space
@@ -16,7 +20,9 @@ def floyd_warshall(graph: dict) -> Optional[dict]:
     vertices = get_vertices(graph)
     # A[i][j] on the kth iteration is the shortest distance between i and j
     # using only nodes up to k
-    A = {i: {j: math.inf for j in vertices} for i in vertices}
+    A: dict[str, dict[str, float]] = {
+        i: {j: math.inf for j in vertices} for i in vertices
+    }
     for i in graph:
         A[i].update(graph[i])
     for i in vertices:
@@ -33,7 +39,7 @@ def floyd_warshall(graph: dict) -> Optional[dict]:
     return A
 
 
-def get_vertices(graph: dict) -> set:
+def get_vertices(graph: dict[str, dict[str, float]]) -> set[str]:
     return set(graph.keys()) | {j for i in graph for j in graph[i]}
 
 
@@ -99,7 +105,7 @@ def test_dasgupta():
 if __name__ == '__main__':
     from .bellman_ford import bellman_ford
 
-    graph = {
+    graph: dict[str, dict[str, float]] = {
         's': {'v': 2, 'x': 4},
         'v': {'w': 2, 'x': 1},
         'w': {'t': 2},

@@ -1,8 +1,11 @@
+from __future__ import annotations
+
 import math
-from typing import Optional
 
 
-def bellman_ford(graph: dict, source) -> Optional[dict]:
+def bellman_ford(
+    graph: dict[str, dict[str, float]], source: str
+) -> dict[str, float] | None:
     """Bellman-Ford algorithm
 
     O(n m) time, O(n^2) space (with a sliding row space would be O(m))
@@ -13,9 +16,13 @@ def bellman_ford(graph: dict, source) -> Optional[dict]:
     or None for negative cycle
     """
     n = len(graph)
-    vertices = set(graph.keys()) | {w for v in graph for w in graph[v]}
+    vertices: set[str] = set(graph.keys()) | {
+        w for v in graph for w in graph[v]
+    }
     # A[i] is dist from the source with a budget of i edges
-    A = [{v: math.inf for v in vertices} for _ in range(n + 1)]
+    A: list[dict[str, float]] = [
+        {v: math.inf for v in vertices} for _ in range(n + 1)
+    ]
     A[0][source] = 0
 
     for i in range(1, n + 1):
@@ -72,7 +79,7 @@ def test_dasgupta():
 if __name__ == '__main__':
     from pprint import pprint as pp
 
-    graph = {
+    graph: dict[str, dict[str, float]] = {
         's': {'v': 2, 'x': 4},
         'v': {'w': 2, 'x': 1},
         'w': {'t': 2},
