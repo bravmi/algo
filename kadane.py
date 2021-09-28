@@ -5,6 +5,7 @@ def kadane(arr: list[float]) -> float:
     """
     best = curr = 0
     for x in arr:
+        # two choices for max sum ending with x
         curr = max(curr + x, x)
         best = max(best, curr)
     return best
