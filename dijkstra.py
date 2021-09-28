@@ -3,7 +3,9 @@ from heapq import heappop, heappush
 from pprint import pprint as pp
 
 
-def dijkstra(graph: dict, source) -> dict:
+def dijkstra(
+    graph: dict[str, dict[str, float]], source: str
+) -> dict[str, float]:
     """Dijkstra's shortest path algorithm
 
     O(m log(m)) time, O(m) space
@@ -15,9 +17,9 @@ def dijkstra(graph: dict, source) -> dict:
 
     :returns: distances from the source to all the graph's vertices
     """
-    dist: dict = {}
+    dist: dict[str, float] = {}
 
-    queue = [(0, source)]
+    queue: list[tuple[float, str]] = [(0, source)]
     while queue:
         score, v = heappop(queue)
         if v in dist:
@@ -64,7 +66,7 @@ if __name__ == '__main__':
         'v': {'w': 2, 't': 6},
         'w': {'t': 3},
     }
-    dist = dijkstra(graph, 's')
+    dist = dijkstra(graph, 's')  # type: ignore
     print('dist:')
     pp(dist)
     assert dist['t'] == 6
