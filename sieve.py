@@ -3,9 +3,10 @@ From here:
 https://stackoverflow.com/questions/2068372/fastest-way-to-list-all-primes-below-n
 """
 import itertools as it
+from typing import Iterator
 
 
-def sieve(n: int) -> list:
+def sieve(n: int) -> list[int]:
     """Returns  a list of primes < n"""
     sieve = [True] * n
     for i in range(3, int(n ** 0.5) + 1, 2):
@@ -14,9 +15,10 @@ def sieve(n: int) -> list:
     return [2] + [i for i in range(3, n, 2) if sieve[i]]
 
 
-def sieve_gen():
+def sieve_gen() -> Iterator[int]:
     """Yields the sequence of prime numbers via the Sieve of Eratosthenes."""
-    D = {}  # map each composite integer to its first-found prime factor
+    # map each composite integer to its first-found prime factor
+    D: dict[int, int] = {}
     yield 2
     for q in it.count(3, step=2):  # q gets 2, 3, 4, 5, ... ad infinitum
         p = D.pop(q, None)
