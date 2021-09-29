@@ -23,7 +23,7 @@ def johnson(
     vertices: set[str] = set(graph.keys()) | {
         w for v in graph for w in graph[v]
     }
-    graph_prime: dict[str, dict[str, float]] = copy.deepcopy(graph)
+    graph_prime = copy.deepcopy(graph)
     s = str(object())  # poor man's singleton
     graph_prime[s] = {v: 0 for v in vertices}
 
