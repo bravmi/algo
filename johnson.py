@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import copy
 from pprint import pprint as pp
 from typing import Optional
@@ -6,7 +8,9 @@ from .bellman_ford import bellman_ford
 from .dijkstra import dijkstra
 
 
-def johnson(graph: dict) -> Optional[dict]:
+def johnson(
+    graph: dict[str, dict[str, float]]
+) -> dict[str, dict[str, float]] | None:
     """Johnson's algorithm
 
     O(n m log(m)) time, O(n^2) space
@@ -16,9 +20,11 @@ def johnson(graph: dict) -> Optional[dict]:
     :returns: shortest distances from each vertex to all the graph's vertices
     or None for negative cycle
     """
-    vertices = set(graph.keys()) | {w for v in graph for w in graph[v]}
-    graph_prime = copy.deepcopy(graph)
-    s = object()  # poor man's singleton
+    vertices: set[str] = set(graph.keys()) | {
+        w for v in graph for w in graph[v]
+    }
+    graph_prime: dict[str, dict[str, float]] = copy.deepcopy(graph)
+    s = str(object())  # poor man's singleton
     graph_prime[s] = {v: 0 for v in vertices}
 
     weight = bellman_ford(graph_prime, s)
@@ -28,7 +34,9 @@ def johnson(graph: dict) -> Optional[dict]:
         for w in graph_prime[v]:
             graph_prime[v][w] += weight[v] - weight[w]
 
-    dist = {v: dijkstra(graph_prime, v) for v in vertices}
+    dist: dict[str, dict[str, float]] = {
+        v: dijkstra(graph_prime, v) for v in vertices
+    }
     for v in vertices:
         dist[v].pop(s, None)  # my dijkstra will return inf for s
         for w in vertices:
@@ -98,7 +106,7 @@ def test_dasgupta():
 if __name__ == '__main__':
     from .floyd_warshall import floyd_warshall
 
-    graph = {
+    graph: dict[str, dict[str, float]] = {
         's': {'v': 2, 'x': 4},
         'v': {'w': 2, 'x': 1},
         'w': {'t': 2},
