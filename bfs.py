@@ -1,16 +1,18 @@
+from __future__ import annotations
+
 import collections as co
 import math
 from pprint import pprint as pp
 
 
-def bfs(graph: dict, source) -> dict:
+def bfs(graph: dict[str, list[str]], source: str) -> dict[str, float]:
     """Breadth First Search
 
     O(m) time, O(n) space
 
     :returns: distances from the source to all the graph's vertices
     """
-    dist = {source: 0}
+    dist: dict[str, float] = {source: 0}
 
     queue = co.deque([source])
     while queue:

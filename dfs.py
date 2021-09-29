@@ -1,12 +1,14 @@
+from __future__ import annotations
+
 from pprint import pprint as pp
 
 
-def dfs(graph: dict, source) -> set:
+def dfs(graph: dict[str, list[str]], source: str) -> set[str]:
     """Depth First Search
 
     O(m) time, O(n) space
     """
-    explored: set = set()
+    explored: set[str] = set()
 
     def _dfs(v) -> None:
         if v in explored:
