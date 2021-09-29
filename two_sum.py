@@ -1,8 +1,8 @@
-def two_sum(nums: list, target: int) -> list:
+def two_sum(nums: list[int], target: int) -> list[int]:
     """
     O(n)
     """
-    hist: dict = {}
+    hist: dict[int, int] = {}
 
     for i, x in enumerate(nums):
         if target - x in hist:
