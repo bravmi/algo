@@ -1,6 +1,6 @@
 import pytest
 
-from .Array import NGROW, NINIT, Array
+from .array import NGROW, NINIT, Array
 
 
 def test_tolist():

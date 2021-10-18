@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 import collections as co
 import math
 from pprint import pprint as pp

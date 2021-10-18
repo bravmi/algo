@@ -3,7 +3,7 @@ def kadane(arr: list[float]) -> float:
 
     O(n) time, O(1) space
     """
-    best = curr = 0
+    best = curr = float(0)
     for x in arr:
         # two choices for max sum ending with x
         curr = max(curr + x, x)

@@ -1,6 +1,6 @@
 import pytest
 
-from .Matrix import *
+from .matrix import *
 
 
 def test_transpose():

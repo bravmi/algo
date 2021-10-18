@@ -3,7 +3,7 @@ import itertools as it
 import pytest
 
 from ..utils import random_string
-from .Hash import Hash
+from .hash import Hash
 
 
 def test_basic():

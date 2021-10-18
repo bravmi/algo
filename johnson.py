@@ -1,8 +1,5 @@
-from __future__ import annotations
-
 import copy
 from pprint import pprint as pp
-from typing import Optional
 
 from .bellman_ford import bellman_ford
 from .dijkstra import dijkstra
