@@ -1,0 +1,27 @@
+[tool.poetry]
+authors = ["Michael T <bravmech@gmail.com>"]
+description = ""
+name = "algo"
+version = "0.1.0"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+[tool.poetry.dev-dependencies]
+autoflake = "*"
+black = "*"
+flake8 = "*"
+ipdb = "*"
+ipython = "*"
+isort = "*"
+mypy = "*"
+pre-commit = "*"
+pytest = "*"
+pyupgrade = "*"
+
+[tool.black]
+skip-string-normalization = true
+
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core>=1.0.0"]
