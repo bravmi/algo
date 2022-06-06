@@ -37,13 +37,13 @@ def quicksort(a: list[float]) -> list[float]:
 
 
 def test10():
-    a = [random.randrange(0, 10) for _ in range(10)]
+    a: list[float] = [random.randrange(0, 10) for _ in range(10)]
     quicksort(a)
     assert a == sorted(a)
 
 
 if __name__ == '__main__':
-    a = [random.randrange(0, 10) for _ in range(10)]
+    a: list[float] = [random.randrange(0, 10) for _ in range(10)]
     print('before sort:')
     print(a)
     quicksort(a)

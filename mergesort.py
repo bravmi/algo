@@ -33,7 +33,7 @@ def test10():
 
 
 if __name__ == '__main__':
-    a = [random.randrange(0, 10) for _ in range(10)]
+    a: list[float] = [random.randrange(0, 10) for _ in range(10)]
     print('before sort:')
     print(a)
     b = mergesort(a)

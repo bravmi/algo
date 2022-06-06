@@ -3,7 +3,7 @@ Regular binary search
 """
 
 
-def binsearch(x: float, a: list[float]) -> float | None:
+def binsearch(x: int, a: list[int]) -> int | None:
     low, high = 0, len(a) - 1
 
     while low <= high:
