@@ -3,7 +3,7 @@ Based on section 2.9 of Practice of Prorgramming book
 """
 
 import itertools as it
-from typing import Any, Optional
+from typing import Any
 
 from ..utils import nextprime, random_string
 
@@ -31,9 +31,7 @@ class Hash:
             self[k] = v
 
     @classmethod
-    def fromkeys(
-        cls, iterable, value=None, nhash=NHASH, multipler=MULTIPLER
-    ) -> 'Hash':
+    def fromkeys(cls, iterable, value=None, nhash=NHASH, multipler=MULTIPLER) -> 'Hash':
         items = ((k, value) for k in iterable)
         return cls(iterable=items, nhash=nhash, multipler=multipler)
 
@@ -79,8 +77,7 @@ class Hash:
 
     def items(self):
         for row in self._symtab:
-            for k, v in row:
-                yield k, v
+            yield from row
 
     def _hash(self, key) -> int:
         s = str(key)
@@ -89,7 +86,7 @@ class Hash:
             h = self._multiplier * h + ord(c)
         return h % self._nhash
 
-    def find_collision(self, key: Any) -> Optional[str]:
+    def find_collision(self, key: Any) -> str | None:
         """just some way to find a collision"""
         for i in it.count(0):
             key2: str = str(key) + chr(i)
@@ -101,9 +98,7 @@ class Hash:
         return {h: row for h, row in enumerate(self._symtab) if len(row) > 1}
 
     def average_length(self) -> int:
-        return (
-            sum(len(row) for _, row in enumerate(self._symtab)) / self._nhash
-        )
+        return sum(len(row) for _, row in enumerate(self._symtab)) / self._nhash
 
     def to_dict(self) -> dict:
         return {h: row for h, row in enumerate(self._symtab) if row}

@@ -4,7 +4,7 @@ Proper recursive in-place version
 import random
 
 
-def partition(a: list[float], start: int[float], stop: int[float]) -> int:
+def partition(a: list[float], start: int, stop: int) -> int:
     """Returns eventual index of a pivot"""
 
     n = stop - start

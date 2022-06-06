@@ -1,6 +1,6 @@
 import pytest
 
-from .matrix import *
+from .matrix import Matrix, eye, zeros
 
 
 def test_transpose():

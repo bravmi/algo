@@ -1,13 +1,10 @@
-from typing import Optional, Union
-
-
 class Matrix:
     def __init__(self, data=None):
         if data is None:
             data = []
         self._matrix = [row[:] for row in data]
         if self:
-            assert len(set(len(row) for row in self)) == 1
+            assert len({len(row) for row in self}) == 1
 
     def __str__(self) -> str:
         lines = []
@@ -75,17 +72,13 @@ class Matrix:
         return A
 
     def minor(self, i: int, j: int) -> 'Matrix':
-        return Matrix(
-            [row[:j] + row[j + 1 :] for row in (self[:i] + self[i + 1 :])]
-        )
+        return Matrix([row[:j] + row[j + 1 :] for row in (self[:i] + self[i + 1 :])])
 
     def det(self) -> float:
         A = self
         n, m = self.shape
         if n != m:
-            raise ValueError(
-                'cannot calculate determinant of non-square matrix'
-            )
+            raise ValueError('cannot calculate determinant of non-square matrix')
 
         if n == 0:
             raise ValueError('matrix cannot be empty')
@@ -104,25 +97,24 @@ class Matrix:
     def __len__(self) -> int:
         return len(self._matrix)
 
-    def __getitem__(self, index: Union[int, slice]) -> list:
+    def __getitem__(self, index: int | slice) -> list:
         if isinstance(index, slice):
             return [row[:] for row in self._matrix[index]]
         return self._matrix[index]
 
-    def __setitem__(self, index: Union[int, slice], value) -> None:
+    def __setitem__(self, index: int | slice, value) -> None:
         self._matrix[index] = value
 
     def append(self, row: list) -> None:
         self._matrix.append(row)
         if self:
-            assert len(set(len(row) for row in self)) == 1
+            assert len({len(row) for row in self}) == 1
 
     def insert(self, index, row) -> None:
         self._matrix.insert(index, row)
 
     def __iter__(self):
-        for row in self._matrix:
-            yield row
+        yield from self._matrix
 
     def __mul__(self, other) -> 'Matrix':
         A, B = self, other
@@ -150,9 +142,7 @@ class Matrix:
 
         A, B = self, other
         n, m = A.shape
-        return all(
-            abs(A[i][j] - B[i][j]) <= atol for i in range(n) for j in range(m)
-        )
+        return all(abs(A[i][j] - B[i][j]) <= atol for i in range(n) for j in range(m))
 
     def __add__(self, other) -> 'Matrix':
         A, B = self, other
@@ -196,7 +186,7 @@ class Matrix:
         return [row[:] for row in self]
 
 
-def zeros(n: int, m: Optional[int] = None) -> 'Matrix':
+def zeros(n: int, m: int | None = None) -> 'Matrix':
     m = m or n
     mat = [[0 for j in range(m)] for i in range(n)]
     return Matrix(mat)

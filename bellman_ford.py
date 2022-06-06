@@ -14,13 +14,9 @@ def bellman_ford(
     or None for negative cycle
     """
     n = len(graph)
-    vertices: set[str] = set(graph.keys()) | {
-        w for v in graph for w in graph[v]
-    }
+    vertices: set[str] = set(graph.keys()) | {w for v in graph for w in graph[v]}
     # A[i] is dist from the source with a budget of i edges
-    A: list[dict[str, float]] = [
-        {v: math.inf for v in vertices} for _ in range(n + 1)
-    ]
+    A: list[dict[str, float]] = [{v: math.inf for v in vertices} for _ in range(n + 1)]
     A[0][source] = 0
 
     for i in range(1, n + 1):

@@ -29,7 +29,7 @@ def test_basic():
 
 
 def test_collision():
-    items = set([('joe', 1), ('bob', 2), ('sam', 3), ('joeϏ', 4)])
+    items = {('joe', 1), ('bob', 2), ('sam', 3), ('joeϏ', 4)}
     h = Hash(items)
     assert set(h.items()) == items
     assert len(h.collisions()[h._hash('joe')]) == 2

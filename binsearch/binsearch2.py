@@ -40,7 +40,7 @@ def test3():
 if __name__ == '__main__':
     x = 2
     a = [1, 1, 2, 2, 2, 2, 3, 4, 7, 8, 9]
-    print('x = {}'.format(x))
-    print('a = {}'.format(a))
+    print(f'x = {x}')
+    print(f'a = {a}')
     print(binsearch(x, a, lambda x, y: x <= y))
     print(binsearch(x, a, lambda x, y: x < y))

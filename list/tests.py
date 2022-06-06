@@ -1,6 +1,6 @@
 import pytest
 
-from .list import *
+from .list import List
 
 
 def test_reversed():

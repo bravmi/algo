@@ -1,6 +1,6 @@
 import collections as co
 import random
-from typing import Deque, Optional
+from typing import Deque
 
 
 class Node:
@@ -30,10 +30,10 @@ class BinarySearchTree:
             curr.right = self._insert(curr.right, value)
         return curr
 
-    def lookup(self, value) -> Optional[Node]:
+    def lookup(self, value) -> Node | None:
         return self._lookup(self.root, value)
 
-    def _lookup(self, curr, value) -> Optional[Node]:
+    def _lookup(self, curr, value) -> Node | None:
         if curr is None:
             return None
 

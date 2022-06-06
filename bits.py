@@ -33,10 +33,10 @@ class Bits:
         if self._number >= 0:
             return bin(self._number)[2:].zfill(num_bits)
         else:
-            return bin(self._number + 2 ** num_bits)[2:].zfill(num_bits)
+            return bin(self._number + 2**num_bits)[2:].zfill(num_bits)
 
     def _fits(self, num_bits: int) -> bool:
-        return -(2 ** num_bits) <= self._number <= (2 ** num_bits - 1)
+        return -(2**num_bits) <= self._number <= (2**num_bits - 1)
 
     def __str__(self) -> str:
         return repr(self)

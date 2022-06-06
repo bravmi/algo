@@ -5,9 +5,7 @@ from .bellman_ford import bellman_ford
 from .dijkstra import dijkstra
 
 
-def johnson(
-    graph: dict[str, dict[str, float]]
-) -> dict[str, dict[str, float]] | None:
+def johnson(graph: dict[str, dict[str, float]]) -> dict[str, dict[str, float]] | None:
     """Johnson's algorithm
 
     O(n m log(m)) time, O(n^2) space
@@ -17,9 +15,7 @@ def johnson(
     :returns: shortest distances from each vertex to all the graph's vertices
     or None for negative cycle
     """
-    vertices: set[str] = set(graph.keys()) | {
-        w for v in graph for w in graph[v]
-    }
+    vertices: set[str] = set(graph.keys()) | {w for v in graph for w in graph[v]}
     graph_prime = copy.deepcopy(graph)
     s = str(object())  # poor man's singleton
     graph_prime[s] = {v: 0 for v in vertices}
@@ -31,9 +27,7 @@ def johnson(
         for w in graph_prime[v]:
             graph_prime[v][w] += weight[v] - weight[w]
 
-    dist: dict[str, dict[str, float]] = {
-        v: dijkstra(graph_prime, v) for v in vertices
-    }
+    dist: dict[str, dict[str, float]] = {v: dijkstra(graph_prime, v) for v in vertices}
     for v in vertices:
         dist[v].pop(s, None)  # my dijkstra will return inf for s
         for w in vertices:

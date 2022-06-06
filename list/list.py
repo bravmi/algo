@@ -1,6 +1,3 @@
-from typing import Optional
-
-
 class Node:
     def __init__(self, value=None, next_=None):
         self.value = value
@@ -38,7 +35,7 @@ class List:
             yield node
             node = node.next
 
-    def get_tail(self) -> Optional[Node]:
+    def get_tail(self) -> Node | None:
         if not self:
             return None
 

@@ -3,9 +3,7 @@ from heapq import heappop, heappush
 from pprint import pprint as pp
 
 
-def dijkstra(
-    graph: dict[str, dict[str, float]], source: str
-) -> dict[str, float]:
+def dijkstra(graph: dict[str, dict[str, float]], source: str) -> dict[str, float]:
     """Dijkstra's shortest path algorithm
 
     O(m log(m)) time, O(m) space
