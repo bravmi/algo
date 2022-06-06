@@ -4,7 +4,7 @@ Iterative in-place version
 import random
 
 
-def partition(a: list, start: int, stop: int) -> int:
+def partition(a: list[float], start: int, stop: int) -> int:
     """Returns eventual index of a pivot"""
 
     n = stop - start
@@ -20,7 +20,7 @@ def partition(a: list, start: int, stop: int) -> int:
     return last
 
 
-def quicksort(a: list) -> list:
+def quicksort(a: list[float]) -> list[float]:
     stack = []
     stack.append((0, len(a)))
 

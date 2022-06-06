@@ -4,7 +4,7 @@ Proper recursive in-place version
 import random
 
 
-def partition(a: list, start: int, stop: int) -> int:
+def partition(a: list[float], start: int[float], stop: int[float]) -> int:
     """Returns eventual index of a pivot"""
 
     n = stop - start
@@ -20,7 +20,7 @@ def partition(a: list, start: int, stop: int) -> int:
     return last
 
 
-def _quicksort(a: list, start: int, stop: int) -> None:
+def _quicksort(a: list[float], start: int, stop: int) -> None:
     n = stop - start
     if n <= 1:
         return
@@ -30,7 +30,7 @@ def _quicksort(a: list, start: int, stop: int) -> None:
     _quicksort(a, p + 1, stop)
 
 
-def quicksort(a: list) -> list:
+def quicksort(a: list[float]) -> list[float]:
     _quicksort(a, 0, len(a))
     return a
 

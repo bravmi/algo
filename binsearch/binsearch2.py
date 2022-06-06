@@ -4,7 +4,7 @@ My take on binary search with ranges of the same elements
 from typing import Callable
 
 
-def binsearch(x, a: list, cmp: Callable):
+def binsearch(x, a: list[float], cmp: Callable[[float, float], bool]) -> float | None:
     low, high = 0, len(a)
 
     while low < high:

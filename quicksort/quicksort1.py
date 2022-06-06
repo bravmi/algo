@@ -4,7 +4,7 @@ Recursive and not in-place but very readable version
 import random
 
 
-def quicksort(a: list) -> list:
+def quicksort(a: list[float]) -> list[float]:
     if len(a) <= 1:
         return a
 

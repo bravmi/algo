@@ -1,7 +1,7 @@
 import random
 
 
-def selectionsort(a: list) -> list:
+def selectionsort(a: list[float]) -> list[float]:
     """
     O(n^2) time, O(1) space
     """
