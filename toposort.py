@@ -10,7 +10,7 @@ def toposort(graph: dict[str, list[str]]) -> list[str]:
 
     def dfs(s: str, hist: set[str]) -> bool:
         explored.add(s)
-        hist |= {s}
+        hist.add(s)
         for v in graph.get(s, []):
             if v in hist:
                 return False
