@@ -1,4 +1,4 @@
-def toposort(graph: dict[str, list[str]]) -> list[str] | None:
+def toposort(graph: dict[str, list[str]]) -> list[str]:
     """Topological sort
 
     O(m + n) time, O(n) space
@@ -23,11 +23,11 @@ def toposort(graph: dict[str, list[str]]) -> list[str] | None:
     for v in graph:
         if v not in explored:
             if not dfs(v, set()):
-                return None
+                return []
     return order[::-1]
 
 
-def is_valid_order(graph: dict[str, list[str]], order: list[str] | None) -> bool:
+def is_valid_order(graph: dict[str, list[str]], order: list[str]) -> bool:
     if not order:
         return False
     for i, v in enumerate(order):
