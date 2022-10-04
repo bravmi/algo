@@ -18,7 +18,7 @@ def toposort(graph: dict[str, list[str]]) -> list[str]:
                 if not dfs(v, hist):
                     return False
         order.append(s)
-        hist.remove(s)
+        hist.remove(s)  # reusing history for optimization
         return True
 
     for v in graph:
