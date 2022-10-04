@@ -15,9 +15,10 @@ def toposort(graph: dict[str, list[str]]) -> list[str]:
             if v in hist:
                 return False
             if v not in explored:
-                if not dfs(v, hist.copy()):
+                if not dfs(v, hist):
                     return False
         order.append(s)
+        hist.remove(s)
         return True
 
     for v in graph:
