@@ -53,5 +53,10 @@ def test_min_cycle():
     assert not toposort(graph)
 
 
+def test_node():
+    graph = {'s': []}
+    assert toposort(graph) == ['s']
+
+
 if __name__ == '__main__':
-    test_cycle()
+    test_node()
