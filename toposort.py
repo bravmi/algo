@@ -10,11 +10,12 @@ def toposort(graph: dict[str, list[str]]) -> list[str] | None:
 
     def dfs(s: str, hist: set[str]) -> bool:
         explored.add(s)
+        hist |= {s}
         for v in graph.get(s, []):
             if v in hist:
                 return False
             if v not in explored:
-                if not dfs(v, hist | {s}):
+                if not dfs(v, hist.copy()):
                     return False
         order.append(s)
         return True
@@ -44,6 +45,11 @@ def test_tim():
 
 def test_cycle():
     graph = {'s': ['v', 'w'], 'v': ['t'], 'w': ['t'], 't': ['s']}
+    assert not toposort(graph)
+
+
+def test_min_cycle():
+    graph = {'s': ['s']}
     assert not toposort(graph)
 
 
