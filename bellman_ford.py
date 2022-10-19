@@ -55,7 +55,7 @@ def test_tim_negative_cycle():
 
 
 def test_dasgupta():
-    graph = {
+    graph = {  # noqa
         's': {'a': 10, 'g': 8},
         'a': {'e': 2},
         'b': {'a': 1, 'c': 1},
