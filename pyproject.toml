@@ -18,6 +18,7 @@ mypy = "*"
 pre-commit = "*"
 pytest = "*"
 pyupgrade = "*"
+sympy = "*"
 
 [tool.black]
 skip-string-normalization = true
