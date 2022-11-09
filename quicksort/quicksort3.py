@@ -21,8 +21,7 @@ def partition(a: list[float], start: int, stop: int) -> int:
 
 
 def quicksort(a: list[float]) -> list[float]:
-    stack = []
-    stack.append((0, len(a)))
+    stack = [(0, len(a))]
 
     while stack:
         start, stop = stack.pop()

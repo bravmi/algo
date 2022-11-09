@@ -7,8 +7,7 @@ class Matrix:
             assert len({len(row) for row in self}) == 1
 
     def __str__(self) -> str:
-        lines = []
-        lines.append('[')
+        lines = ['[']
         lines.extend(f'    {str(row)},' for row in self)
         lines.append(']')
         return '\n'.join(lines)

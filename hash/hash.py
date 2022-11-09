@@ -97,7 +97,7 @@ class Hash:
     def collisions(self) -> dict:
         return {h: row for h, row in enumerate(self._symtab) if len(row) > 1}
 
-    def average_length(self) -> int:
+    def average_length(self) -> float:
         return sum(len(row) for _, row in enumerate(self._symtab)) / self._nhash
 
     def to_dict(self) -> dict:

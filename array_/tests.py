@@ -59,7 +59,7 @@ def test_getitem():
     assert a[1] == 2
 
     with pytest.raises(IndexError):
-        a[3]
+        _ = a[3]
 
 
 def test_setitem():

@@ -61,6 +61,7 @@ class Array:
         """
         in-place
         :param k: rotation offset
+        :param left: rotate left if True, right otherwise
         """
         n = self._nval
         k = k % n

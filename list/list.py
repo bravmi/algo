@@ -159,7 +159,7 @@ class List:
         return self.head is not None
 
     def __len__(self) -> int:
-        return sum(1 for x in self)
+        return sum(1 for _ in self)
 
     def __iter__(self):
         node = self.head

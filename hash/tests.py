@@ -21,7 +21,7 @@ def test_basic():
 
     assert h.get('beth') is None
     with pytest.raises(KeyError):
-        h['beth']
+        _ = h['beth']
     h.extend([('don', 7), ('greg', 8)])
     assert len(h) == 5
 
