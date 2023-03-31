@@ -31,4 +31,4 @@ update:
 	poetry export --format requirements.txt --output requirements.txt --dev
 
 test-act:
-	act --container-architecture linux/amd64
+	act --job test
