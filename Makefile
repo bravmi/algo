@@ -1,3 +1,4 @@
+.PHONY: *
 
 cov:
 	pytest --cov=. --cov-report=html --no-cov-on-fail
@@ -24,3 +25,10 @@ black:
 
 isort:
 	isort .
+
+update:
+	poetry update -vv
+	poetry export --format requirements.txt --output requirements.txt --dev
+
+test-act:
+	act --container-architecture linux/amd64
