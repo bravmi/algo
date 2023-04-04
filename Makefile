@@ -31,4 +31,4 @@ update:
 	poetry export --format requirements.txt --output requirements.txt --dev
 
 build:
-	act --job build
+	act --job build --workflows=.github/workflows/main.yml
