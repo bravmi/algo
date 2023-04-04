@@ -30,5 +30,5 @@ update:
 	poetry update -vv
 	poetry export --format requirements.txt --output requirements.txt --dev
 
-test-act:
-	act --job test
+build:
+	act --job build

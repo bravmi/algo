@@ -32,7 +32,7 @@ pexpect==4.8.0; sys_platform != "win32" and python_version >= "3.8" and (python_
 pickleshare==0.7.5; python_version >= "3.8" and python_version < "3.11" and python_full_version < "3.0.0" or python_version >= "3.8" and python_version < "3.11" and python_full_version >= "3.4.0" or python_version >= "3.11" and python_full_version < "3.0.0" or python_version >= "3.11" and python_full_version >= "3.4.0"
 platformdirs==3.2.0; python_version >= "3.8"
 pluggy==1.0.0; python_version >= "3.7"
-pre-commit==3.2.1; python_version >= "3.8"
+pre-commit==3.2.2; python_version >= "3.8"
 prompt-toolkit==3.0.38; python_version >= "3.8" and python_version < "3.11" and python_full_version >= "3.7.0" or python_version >= "3.11" and python_full_version >= "3.7.0"
 ptyprocess==0.7.0; sys_platform != "win32" and python_version >= "3.8" and (python_version >= "3.8" and python_version < "3.11" and python_full_version < "3.0.0" or python_version >= "3.8" and python_version < "3.11" and python_full_version >= "3.4.0" or python_version >= "3.11" and python_full_version < "3.0.0" or python_version >= "3.11" and python_full_version >= "3.4.0")
 pure-eval==0.2.2; python_version >= "3.8" and python_version < "3.11" and python_full_version < "3.0.0" or python_version >= "3.8" and python_version < "3.11" and python_full_version >= "3.4.0" or python_version >= "3.11" and python_full_version < "3.0.0" or python_version >= "3.11" and python_full_version >= "3.4.0"

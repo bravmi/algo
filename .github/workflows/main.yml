@@ -3,7 +3,7 @@ name: main
 on: [push]
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -18,7 +18,11 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install poetry
+          poetry install -vv --quiet
+      - name: Lint with flake and mypy
+        run: |
+          poetry run make lint
       - name: Test with pytest
         run: |
-          pytest
+          poetry run make test

@@ -35,7 +35,7 @@ def quicksort(a: list[float]) -> list[float]:
     return a
 
 
-def test10():
+def test10() -> None:
     a: list[float] = [random.randrange(0, 10) for _ in range(10)]
     quicksort(a)
     assert a == sorted(a)
