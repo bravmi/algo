@@ -24,7 +24,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
       # Enable tmate debugging of manually-triggered workflows if the input option was provided
       - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
+        uses: mxschmitt/action-tmate@1005f9c9db5f1b055a495e72c6e589764984baf6
         if: ${{ github.event_name == 'workflow_dispatch' && inputs.debug_enabled }}
         timeout-minutes: 15
         with:
