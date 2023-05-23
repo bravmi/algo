@@ -8,11 +8,11 @@ def binsearch(x: float, a: list[int]) -> int | None:
 
     while low <= high:
         mid = (low + high) // 2
-        if a[mid] < x:
+        if x > a[mid]:
             low = mid + 1
-        elif a[mid] > x:
+        elif x < a[mid]:
             high = mid - 1
-        elif a[mid] == x:
+        elif x == a[mid]:
             return mid
     return None
 
