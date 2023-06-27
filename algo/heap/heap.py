@@ -27,7 +27,7 @@ class Heap:
         self._sift_up(len(self) - 1)
 
     def _sift_up(self, i: int) -> None:
-        if i == 0:
+        if i <= 0:
             return
         j = self._parent(i)
         if self[j] > self[i]:

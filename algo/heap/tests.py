@@ -65,3 +65,10 @@ def test_push_pop():
     h = Heap([3, 2, 6, 8, 7])
     assert h.push_pop(1) == 1
     assert h.values() == [2, 3, 6, 8, 7]
+
+
+def test_max_heap():
+    values = [3, 2, 15, 5, 4, 45]
+    h = Heap([-x for x in values])
+    assert -h.root() == 45
+    assert [-x for x in h.values()] == [45, 5, 15, 2, 4, 3]
