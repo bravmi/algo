@@ -17,6 +17,7 @@ def dijkstra(graph: dict[str, dict[str, float]], source: str) -> dict[str, float
     """
     dist: dict[str, float] = {}
 
+    # second elements must be comparable
     queue: list[tuple[float, str]] = [(0, source)]
     while queue:
         score, v = heappop(queue)
