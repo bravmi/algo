@@ -28,8 +28,10 @@ def dijkstra(graph: dict[str, dict[str, float]], source: str) -> dict[str, float
             continue
 
         for w in graph[v]:
-            if w not in dist:  # optimization
-                heappush(queue, (dist[v] + graph[v][w], w))
+            if w in dist:  # optimization
+                continue
+            score = dist[v] + graph[v][w]
+            heappush(queue, (score, w))
 
     vertices = set(graph.keys()) | {w for v in graph for w in graph[v]}
     dist.update({v: math.inf for v in vertices if v not in dist})
