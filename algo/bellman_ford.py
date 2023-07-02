@@ -6,7 +6,7 @@ def bellman_ford(
 ) -> dict[str, float] | None:
     """Bellman-Ford algorithm
 
-    O(n m) time, O(n^2) space (with a sliding row space would be O(m))
+    O(n m) time, O(n^2) space (with a sliding row space would be O(n))
 
     Based on Tim Roughgarden's lectures
 
