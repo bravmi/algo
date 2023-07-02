@@ -10,6 +10,7 @@ def dijkstra(graph: dict[str, dict[str, float]], source: str) -> dict[str, float
     log(m) here since it's a heap of edges' heads (as opposed to vertices)
     for simplicity, which is fine because the best one will win anyway.
     For log(n) would need a custom heap of vertices with delete-insert
+    and a mapping from vertices to their heap positions.
 
     Based on Tim Roughgarden's lectures
 
