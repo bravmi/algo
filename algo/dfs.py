@@ -8,7 +8,7 @@ def dfs(graph: dict[str, list[str]], source: str) -> set[str]:
     """
     explored: set[str] = set()
 
-    def _dfs(v: str) -> None:
+    def dfs_(v: str) -> None:
         if v in explored:
             return
         explored.add(v)
@@ -16,9 +16,9 @@ def dfs(graph: dict[str, list[str]], source: str) -> set[str]:
         if v not in graph:  # dead end
             return
         for w in graph[v]:
-            _dfs(w)
+            dfs_(w)
 
-    _dfs(source)
+    dfs_(source)
     return explored
 
 
