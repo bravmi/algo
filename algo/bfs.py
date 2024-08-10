@@ -1,6 +1,6 @@
-import collections as co
+import collections
 import math
-from pprint import pprint as pp
+from pprint import pprint
 
 
 def bfs(graph: dict[str, list[str]], source: str) -> dict[str, float]:
@@ -12,7 +12,7 @@ def bfs(graph: dict[str, list[str]], source: str) -> dict[str, float]:
     """
     dist: dict[str, float] = {source: 0}
 
-    queue = co.deque([source])
+    queue = collections.deque([source])
     while queue:
         v = queue.popleft()
         if v not in graph:  # dead end
@@ -74,5 +74,5 @@ if __name__ == '__main__':
     }
     dist = bfs(graph, 's')
     print('dist:')
-    pp(dist)
+    pprint(dist)
     assert dist['e'] == 3

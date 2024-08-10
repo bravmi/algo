@@ -1,6 +1,6 @@
 import math
-from heapq import heappop, heappush
-from pprint import pprint as pp
+import heapq
+from pprint import pprint
 
 
 def dijkstra(graph: dict[str, dict[str, float]], source: str) -> dict[str, float]:
@@ -21,7 +21,7 @@ def dijkstra(graph: dict[str, dict[str, float]], source: str) -> dict[str, float
     # second elements must be comparable
     queue: list[tuple[float, str]] = [(0, source)]
     while queue:
-        score, v = heappop(queue)
+        score, v = heapq.heappop(queue)
         if v in dist:
             continue
         dist[v] = score
@@ -32,7 +32,7 @@ def dijkstra(graph: dict[str, dict[str, float]], source: str) -> dict[str, float
             if w in dist:  # optimization
                 continue
             score = dist[v] + graph[v][w]
-            heappush(queue, (score, w))
+            heapq.heappush(queue, (score, w))
 
     vertices = set(graph.keys()) | {w for v in graph for w in graph[v]}
     dist.update({v: math.inf for v in vertices if v not in dist})
@@ -70,5 +70,5 @@ if __name__ == '__main__':
     }
     dist = dijkstra(graph, 's')  # type: ignore
     print('dist:')
-    pp(dist)
+    pprint(dist)
     assert dist['t'] == 6

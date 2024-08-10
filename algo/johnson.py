@@ -1,5 +1,5 @@
 import copy
-from pprint import pprint as pp
+from pprint import pprint
 
 from .bellman_ford import bellman_ford
 from .dijkstra import dijkstra
@@ -105,6 +105,6 @@ if __name__ == '__main__':
     }
     dist = johnson(graph)
     print('dist:')
-    pp(dist)
+    pprint(dist)
     want = floyd_warshall(graph)
     assert dist == want

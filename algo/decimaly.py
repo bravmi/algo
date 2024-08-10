@@ -1,7 +1,7 @@
-from typing import Iterator
+import typing
 
 
-def decimal(n: int, d: int, prec=100) -> Iterator[str]:
+def decimal(n: int, d: int, prec=100) -> typing.Iterator[str]:
     if n * d < 0:
         yield '-'
     n = abs(n)

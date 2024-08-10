@@ -1,4 +1,5 @@
 import math
+from pprint import pprint
 
 
 def bellman_ford(
@@ -71,8 +72,6 @@ def test_dasgupta():
 
 
 if __name__ == '__main__':
-    from pprint import pprint as pp
-
     graph: dict[str, dict[str, float]] = {
         's': {'v': 2, 'x': 4},
         'v': {'w': 2, 'x': 1},
@@ -82,6 +81,6 @@ if __name__ == '__main__':
     }
     dist = bellman_ford(graph, 's')
     print('dist:')
-    pp(dist)
+    pprint(dist)
     assert dist is not None
     assert dist['t'] == 6

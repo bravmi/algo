@@ -1,5 +1,5 @@
 import math
-from pprint import pprint as pp
+from pprint import pprint
 
 
 def floyd_warshall(
@@ -110,6 +110,6 @@ if __name__ == '__main__':
     }
     dist = floyd_warshall(graph)
     print('dist:')
-    pp(dist)
+    pprint(dist)
     want = {v: bellman_ford(graph, v) for v in get_vertices(graph)}
     assert dist == want

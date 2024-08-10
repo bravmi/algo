@@ -1,4 +1,4 @@
-from pprint import pprint as pp
+from pprint import pprint
 
 
 def dfs(graph: dict[str, list[str]], source: str) -> set[str]:
@@ -65,5 +65,5 @@ if __name__ == '__main__':
     }
     explored = dfs(graph, 's')
     print('explored:')
-    pp(explored)
+    pprint(explored)
     assert explored == {'s', 'a', 'b', 'c', 'd', 'e'}

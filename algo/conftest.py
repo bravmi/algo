@@ -19,3 +19,15 @@ def pytest_collection_modifyitems(config, items):
     for item in items:
         if 'slow' in item.keywords:
             item.add_marker(skip_slow)
+
+
+@pytest.fixture(autouse=True, scope='session')
+def set_ipython_config():
+    """Set IPython config for pytest ipdb."""
+    from _pytest.debugging import pytestPDB
+
+    p = pytestPDB._init_pdb('post_mortem')
+
+    from IPython.terminal import ipapp
+
+    p.shell.config = ipapp.load_default_config()

@@ -1,6 +1,6 @@
-import collections as co
+import collections
 import random
-from typing import Deque
+import typing
 
 
 class Node:
@@ -95,7 +95,7 @@ class BinarySearchTree:
             return []
 
         acc = []
-        queue: Deque = co.deque([self.root])
+        queue: typing.Deque = collections.deque([self.root])
         while queue:
             node = queue.pop()
             if node is None:
