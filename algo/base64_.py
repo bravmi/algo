@@ -15,7 +15,7 @@ def encode(b: bytes) -> bytes:
     bits = ''.join(f'{byte:08b}' for byte in b)
     groups = [''.join(g) for g in itertools_.grouper(bits, 6, fillvalue='0')]
     result = bytes(CHARS[int(g, 2)] for g in groups)
-    padding = b'=' * (-len(result) % 4)  # why max two =?
+    padding = b'=' * (-len(result) % 4)
     return result + padding
 
 
